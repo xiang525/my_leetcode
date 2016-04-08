@@ -53,6 +53,7 @@ class Solution:
 
 """
 九章solution, 思路非常清晰，比起hashmap没有耗费过多的空间
+O(1) space
 """
 class Solution:
     # @param head, a RandomListNode
@@ -119,8 +120,26 @@ class Solution:
         return dummy.next
 
 
-
-
+"""
+hash map soluton, O(n) and O(n) space
+"""
+class Solution:
+    # @param head, a RandomListNode
+    # @return a RandomListNode
+    def copyRandomList(self, head):
+        nodeDict = dict()
+        dummy = RandomListNode(0)
+        pointer, newHead = head, dummy
+        while pointer:
+            newNode = RandomListNode(pointer.label)
+            nodeDict[pointer] = newHead.next = newNode
+            newHead, pointer = newHead.next, pointer.next
+        pointer, newHead = head, dummy.next
+        while pointer:
+            if pointer.random:
+                newHead.random = nodeDict[pointer.random]
+            pointer, newHead = pointer.next, newHead.next
+        return dummy.next
 
 
 
