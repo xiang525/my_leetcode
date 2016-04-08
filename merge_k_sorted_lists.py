@@ -2,6 +2,8 @@
 # 典型的使用heap数据结构的题目
 # 解题思路：归并k个已经排好序的链表。使用堆这一数据结构，首先将每条链表的头节点进入堆中，
 # 然后将最小的弹出，并将最小的节点这条链表的下一个节点入堆，依次类推，最终形成的链表就是归并好的链表。
+如果不用priority queue, O(nk), heap improves it to O(nlogk).
+记住从n个数里取一个最大或最小值， 最快的是heap（大顶堆或小顶堆）O(1).
 """
 
 # Definition for singly-linked list.
@@ -37,6 +39,41 @@ class Solution:
 # heapq.heappushpop(a, (10, sth_else)) 先push再pop, 效率比依次调用heappush()和heappop()高 
 """
 
+
+"""
+merge two by two
+solution in discussion
+"""
+class Solution(object):
+    def mergeKLists(self, lists):
+        """
+        :type lists: List[ListNode]
+        :rtype: ListNode
+        """
+        if not lists:return None
+        if len(lists) == 1:return lists[0]
+        mid = len(lists)/2
+        left = self.mergeKLists(lists[:mid])
+        right = self.mergeKLists(lists[mid:])
+        return self.merge(left,right)
+                
+        
+    def merge(self,head1,head2):
+        dummy = ListNode(0); p = dummy
+        while head1 and head2:
+            if head1.val <= head2.val:
+                p.next = head1
+                p = p.next
+                head1 = head1.next
+            else:
+                p.next = head2
+                head2 = head2.next
+                p = p.next
+        if head1:
+            p.next = head1
+        if head2:
+            p.next = head2
+        return dummy.next
 
 
 

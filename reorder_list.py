@@ -119,14 +119,12 @@ class Solution(object):
         """
         if not head or not head.next:return
         mid = self.findMiddle(head)
-        t = mid.next
+        right = self.reverse(mid.next)
         mid.next = None
-        head2 = self.reverse(t)
-        self.merge(head,head2)
+        self.merge(head,right)
         
         
-    
-    
+        
     def findMiddle(self,head):
         slow = head; fast = head.next
         while fast and fast.next:
@@ -135,26 +133,27 @@ class Solution(object):
         return slow
         
     def reverse(self,head):
-        pre = None
+        prev = None
         while head:
             tmp = head.next
-            head.next = pre
-            pre = head
+            head.next = prev
+            prev = head
             head = tmp
-        return pre
+        return prev
     
     def merge(self,head1,head2):
-        i = 0;dummy = ListNode(0);p = dummy
+        dummy = ListNode(0); p = dummy
+        index = 0 #有个技巧是使用index
         while head1 and head2:
-            if i % 2 == 0:
+            if index % 2 == 0:
                 p.next = head1
-                p = p.next
                 head1 = head1.next
+                p = p.next
             else:
                 p.next = head2
-                p = p.next
                 head2 = head2.next
-            i += 1
+                p = p.next
+            index += 1
         if head1:
             p.next = head1
         if head2:
