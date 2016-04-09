@@ -91,54 +91,34 @@ class Solution:
 
 
 
+
+
 """
-九章hashmap 的解法
+hashmap soluton, O(n) and O(n) space
+使用哈希表保存原链表到新链表节点的映射，即可实现对随机指针域的拷贝
 """
-class Solution:
-    # @param head, a RandomListNode
-    # @return a RandomListNode
+class Solution(object):
     def copyRandomList(self, head):
-        if not head:return None
-        d = dict()
-        dummy = ListNode(0);pre = dummy
-        while head:
-            if head in d:
-                newNode = d[head]
-            else:
-                newNode = RandomListNode(head.label)
-                d[head] = newNode
-            pre.next = newNode
-
-            if head.random:
-                if head.random in d:
-                    newNode.random = d[head.random]
-                else:
-                    newNode.random = RandomListNode(head.random.label)
-                    d[head.random] = newNode.random
-            pre = newNode
-            head = head.next
-        return dummy.next
-
-
-"""
-hash map soluton, O(n) and O(n) space
-"""
-class Solution:
-    # @param head, a RandomListNode
-    # @return a RandomListNode
-    def copyRandomList(self, head):
-        nodeDict = dict()
+        """
+        :type head: RandomListNode
+        :rtype: RandomListNode
+        """
+        d = {}
         dummy = RandomListNode(0)
-        pointer, newHead = head, dummy
-        while pointer:
-            newNode = RandomListNode(pointer.label)
-            nodeDict[pointer] = newHead.next = newNode
-            newHead, pointer = newHead.next, pointer.next
-        pointer, newHead = head, dummy.next
-        while pointer:
-            if pointer.random:
-                newHead.random = nodeDict[pointer.random]
-            pointer, newHead = pointer.next, newHead.next
+        p, newhead = head, dummy
+        while p:
+            newNode = RandomListNode(p.label)
+            d[p] = newNode
+            newhead.next = newNode
+            newhead = newhead.next
+            p = p.next
+            
+        p, newhead = head, dummy.next
+        while p:
+            if p.random:
+                newhead.random = d[p.random]
+            p = p.next
+            newhead = newhead.next
         return dummy.next
 
 
