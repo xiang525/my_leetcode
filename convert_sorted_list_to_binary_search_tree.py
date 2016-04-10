@@ -120,6 +120,7 @@ class Solution(object):
 
 """
 不用数组的解法：用快慢指针处理起来会复杂些;要清楚头和尾不是都是None
+O(nlogn)
 """
 class Solution(object):
     def sortedListToBST(self, head):

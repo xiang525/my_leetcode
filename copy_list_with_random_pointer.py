@@ -64,7 +64,7 @@ class Solution:
         self.copyRandom(head)
         return splitList(head)
 
-
+        
     def copyNext(self,head):
         while head:
             newNode = RandomListNode(head.label)
