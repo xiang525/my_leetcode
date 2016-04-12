@@ -83,13 +83,31 @@ class Solution:
                     map[curr].neighbors.append(copy)
                     map[neighbor] = copy
                     queue.append(neighbor)
-                else:
-                    # turn directed graph to undirected graph
+                else:                    
                     map[curr].neighbors.append(map[neighbor])
         return newhead
 
 
-
+""" 
+九章的递归的做法, dfs,我改编了下
+"""
+class Solution(object):
+    def __init__(self):
+        self.d = {}
+        
+    def cloneGraph(self, node):
+        """
+        :type node: UndirectedGraphNode
+        :rtype: UndirectedGraphNode
+        """
+        if not node:return None
+        if node in self.d:
+            return self.d[node]
+        root = UndirectedGraphNode(node.label)
+        self.d[node] = root
+        for e in node.neighbors:
+            root.neighbors.append(self.cloneGraph(e))
+        return root
 
 
 

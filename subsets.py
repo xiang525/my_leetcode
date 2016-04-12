@@ -78,6 +78,25 @@ class Solution:
 
 # 经典题必会
 
+"""
+简洁的代码,jiuzhang讲得很好
+"""
+class Solution(object):
+    def subsets(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        def dfs(value,pos):
+            ans.append(value)
+            if pos ==len(nums):return
+            for i in range(pos,len(nums)):
+                dfs(value+[nums[i]],i+1)                
+        ans = []
+        nums.sort()
+        dfs([],0)
+        return ans
+
 
 
 

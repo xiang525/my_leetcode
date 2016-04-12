@@ -1,7 +1,8 @@
 """
 # 此问题等价于判断有向图中是否有环。如果存在环路，无法完成拓扑排序，也就不可能修完所有的课程。
 # 表示图的方法有几种。例如，输入中的先修课程就是用一组边的方式表示图。这种图的表示方法合适吗？
-# 通过DFS实现的拓扑排序—Cousera的一段21分钟的视频教程很好的解释了拓扑排序的基本概念。拓扑排序也可以通过BFS完成。
+# 通过DFS实现的拓扑排序—Cousera的一段21分钟的视频教程很好的解释了拓扑排序的基本概念。
+# 拓扑排序也可以通过BFS完成。
 # 解题思路：拓扑排序，如果可以完成拓扑排序，返回True，否则返回False
 # O (V + E)
 # DAG is a directed graph without a cycle, topological sort is only for DAG
@@ -97,10 +98,11 @@ class Solution(object):
 # 不要一味的套用书上算法里的indegree outdegree， 具体根据题意来定义
 
 """
-自己的写法
+自己的写法, 比较好理解
 """
 def canFinish(self, numCourses, prerequisites):
-        n = numCourses; indegree = [0]*n; childs = [[] for i in range(n)] # 这种数据结构比字典方便操作
+        n = numCourses; 
+        indegree = [0]*n; childs = [[] for i in range(n)] # 这种数据结构比字典方便操作
         if not prerequisites: return True
         
         # 类似于在建graph
@@ -120,7 +122,7 @@ def canFinish(self, numCourses, prerequisites):
                 indegree[ee] -= 1
                 if indegree[ee] == 0:
                     stack.append(ee)
-        return [False,True][len(courses)==k] # =k return False
+        return k==n # =k return False
 
 
 

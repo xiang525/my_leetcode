@@ -1,41 +1,42 @@
 class Solution(object):
-    def threeSum(self, nums):
+    def canFinish(self, numCourses, prerequisites):
         """
-        :type nums: List[int]
-        :rtype: List[List[int]]
+        :type numCourses: int
+        :type prerequisites: List[List[int]]
+        :rtype: bool
         """
+        n = numCourses; 
+        indegree = [0]*n
+        childs = [[] for i in range(n)]
+        print childs 
+        # childs = {}
+        if not prerequisites: return True
         
-        nums.sort()
-        ans = []; n = len(nums)
-        #if n < 3:return ans
-        for i in range(n-2):
-            if i > 0 and nums[i]==nums[i-1]:
-                continue
-            left = i + 1; right = n-1
-            while left < right:
-                sums = nums[left] + nums[right] + nums[i]
-                
-                if sums == 0:
-                    ans.append(([nums[i],nums[left],nums[right]]))
-                    
-                    while left < right and nums[left] == nums[left+1]:
-                        left += 1
-                    while left < right and nums[right] == nums[right-1]:
-                        right -= 1
-                    left += 1;right -= 1
+       
+        for e in prerequisites:            
+            indegree[e[0]] += 1           
+            childs[e[1]].append(e[0])
+        print childs,indegree 
 
-                elif sums < 0:
-                    left += 1
-                else:
-                    right -= 1
-               
-        return ans
+        k = 0; stack = []
+        for i in range(n):
+            if indegree[i] == 0:
+                stack.append(i)
+
+        while stack:
+            tmp = stack.pop()
+            k += 1            
+            for ee in childs[tmp]:
+                indegree[ee] -= 1
+                if indegree[ee] == 0:
+                    stack.append(ee)
+        return numCourses==k
 
 
 
 if __name__ == '__main__':
     a = Solution()
-    print a.threeSum([-2,0,1,1,2])
+    print a.canFinish(3,[[1,0],[2,0]])
 
 
 

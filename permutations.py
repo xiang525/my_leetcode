@@ -58,6 +58,27 @@ class Solution(object):
         return ans
 
 
+"""
+也可以用size 
+"""
+class Solution(object):
+    def permute(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        def dfs(nums,value):
+            if len(value) == size:
+                ans.append(value)
+            for i in range(len(nums)):
+                dfs(nums[:i]+nums[i+1:],value+[nums[i]])
+        
+        ans = []
+        size = len(nums)
+        dfs(nums,[])
+        return ans
+
+
 
       
      
