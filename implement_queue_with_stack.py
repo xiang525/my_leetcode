@@ -1,3 +1,7 @@
+"""
+这个做法有些作弊，不提倡
+"""
+
 class Queue:
     # initialize your data structure here.
     def __init__(self):
@@ -25,7 +29,7 @@ class Queue:
 
 
 """
-九章两个stack的解法
+九章两个stack的解法;注意细节
 """
 class Queue(object):
     def __init__(self):
@@ -71,4 +75,53 @@ class Queue(object):
         :rtype: bool
         """
         return (not self.stack1) and (not self.stack2)
+
+
+
+"""
+My own solution
+"""
+class Queue(object):
+    def __init__(self):
+        """
+        initialize your data structure here.
+        """
+        self.stack = []
+        self.reverseStack = []
+        
+
+    def push(self, x):
+        """
+        :type x: int
+        :rtype: nothing
+        """
+        self.stack.append(x)
+        
+
+    def pop(self):
+        """
+        :rtype: nothing
+        """
+        if not self.reverseStack:#如果不为空push进去后元素顺序就乱了所以只在为空的时候push
+            while self.stack:
+                self.reverseStack.append(self.stack.pop())
+        self.reverseStack.pop()
+        
+
+    def peek(self):
+        """
+        :rtype: int
+        """
+        if not self.reverseStack:
+            while self.stack:
+                self.reverseStack.append(self.stack.pop())
+        return self.reverseStack[-1]
+        
+
+    def empty(self):
+        """
+        :rtype: bool
+        """
+        return (not self.reverseStack) and (not self.stack)
+
         
