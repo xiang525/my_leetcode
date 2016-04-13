@@ -18,6 +18,9 @@ class Solution:
         return Solution.ret
 
 
+"""
+My own Solution
+"""
 # ********* The third Time *********************
 class Solution(object):
     def combinationSum2(self, candidates, target):
@@ -39,6 +42,27 @@ class Solution(object):
         return ans
 
 
+"""
+另一种思路， 写法很相似
+"""
+class Solution(object):
+    def combinationSum2(self, candidates, target):
+        """
+        :type candidates: List[int]
+        :type target: int
+        :rtype: List[List[int]]
+        """
+        def dfs(start,sums,value):
+            if sums == target and value not in ans:
+                ans.append(value)
+            for i in range(start,len(candidates)):
+                if candidates[i] > target - sums:return
+                dfs(i+1,sums+candidates[i],value+[candidates[i]])
+                
+        ans = []
+        candidates.sort()
+        dfs(0,0,[])
+        return ans
 
 
 

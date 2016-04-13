@@ -51,3 +51,61 @@ class Solution:
                            
         return 0
 
+"""
+my own Solution
+"""
+class Solution(object):
+    def ladderLength(self, beginWord, endWord, wordList):
+        """
+        :type beginWord: str
+        :type endWord: str
+        :type wordList: Set[str]
+        :rtype: int
+        """
+        queue = [(beginWord,1)];
+        wordlength = len(beginWord)        
+        while queue:
+            tmp = queue.pop(0)
+            cur = tmp[0];length = tmp[1]
+            if cur == endWord:return length
+            for i in range(wordlength):
+                part1 = cur[:i]; part2 = cur[i+1:]
+                for j in 'abcdefghijklmnopqrstuvwxyz':
+                    if cur[i]!=j:
+                        nextWord = part1+j+part2
+                        if nextWord in wordList:                            
+                            queue.append((nextWord,length+1))
+                            wordList.remove(nextWord)
+        return 0
+
+"""
+以下是常见的错误解法:这种解法length不是最短应为当一步有多种选择时length被多次加1，我想了很久才弄明白
+"""
+class Solution(object):
+    def ladderLength(self, beginWord, endWord, wordList):
+        """
+        :type beginWord: str
+        :type endWord: str
+        :type wordList: Set[str]
+        :rtype: int
+        """
+        queue = [beginWord];
+        length = 1
+        wordlength = len(beginWord)
+        
+        while queue:
+            tmp = queue.pop(0)
+            cur = tmp[0];length = tmp[1]
+            if cur == endWord:return length
+            for i in range(wordlength):
+                part1 = cur[:i]; part2 = cur[i+1:]
+                for j in 'abcdefghijklmnopqrstuvwxyz':
+                    if cur[i]!=j:
+                        nextWord = part1+j+part2
+                        if nextWord in wordList:                            
+                            queue.append(nextWord)
+                            wordList.remove(nextWord)
+            length += 1
+        return 0
+
+
