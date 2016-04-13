@@ -56,7 +56,7 @@ class MinStack(object):
         :rtype: nothing
         """
         self.stack.append(x)
-        if not self.minStack  or x <= self.minStack[-1]:
+        if not self.minStack  or x <= self.minStack[-1]:#注意这里要=，有多个相同值时，相同最小值要多次进占
             self.minStack.append((x))
         
 
@@ -96,7 +96,7 @@ class MinStack:
     def __init__(self):
         self.stack = []
         self.minStack = []
-        #self.minStack.append(0)
+        
     # @param x, an integer
     # @return an integer
     def push(self, x):

@@ -39,6 +39,7 @@ class Solution(object):
         for i in range(3,n+1):
             for j in range(i):
                 dp[i] += dp[j] * dp[i-j-1] #到i时的dp分为两部分， 一部分是i之前的j， 另一部分是从j到i的；两部分相乘
+                                           #i-1-j中1是为了减去root
         return dp[n]
 
 
