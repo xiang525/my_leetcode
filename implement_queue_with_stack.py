@@ -122,6 +122,6 @@ class Queue(object):
         """
         :rtype: bool
         """
-        return (not self.reverseStack) and (not self.stack)
+        return (not self.reverseStack) and (not self.stack)#两个stack都为空时才空
 
         

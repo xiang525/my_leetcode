@@ -1,5 +1,5 @@
 """
-jiuzhang视频讲解的非常好, 一下是思路
+jiuzhang视频讲解 (data structure 8)的非常好, 一下是思路
 # O(N)解法。要一个栈来存放非递减的height序列, 即碰到大于等于栈顶的就入栈, 碰到小于栈顶的就
 # pop。对于每个pop出的元素h[stack[top]]，都要计算以它为最低高度的矩形的面积, 高度就是h[stack[top]], 
 # 宽度就是i － stack[-1] - 1, 注意栈中的元素都是非递减的。在h末尾多加一个0的目的是保证栈中的元素都可
@@ -25,3 +25,28 @@ class Solution:
         return maxArea
 
 # 更详细的解释： http://www.cnblogs.com/lichen782/p/leetcode_Largest_Rectangle_in_Histogram.html
+
+
+"""
+我的写法，九章的思路 O(n)
+"""
+class Solution(object):
+    def largestRectangleArea(self, height):
+        stack = []; i = 0; maxArea = 0 # stack里存放的是index
+        height = height + [0] # 加0是为了弹出所有stack里的元素
+        n = len(height)
+        while i < n: # cannot use for loop    
+            if (not stack) or height[stack[-1]] <= height[i]: #注意i是index
+                stack.append(i)  # push index not value
+                i += 1
+            else:
+                pop = stack.pop()
+                maxArea = max(maxArea, height[pop] * (i if not stack else i - stack[-1] - 1))
+        return maxArea
+
+
+
+
+
+
+
