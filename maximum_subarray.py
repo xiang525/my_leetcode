@@ -111,7 +111,7 @@ class Solution:
 
 
 """
-九章solution：prefix sum 
+九章solution：prefix sum O(n)
 """
 class Solution(object):
     def maxSubArray(self, nums):
@@ -120,7 +120,7 @@ class Solution(object):
         :rtype: int
         """
         if not nums:return 0
-        max_value = -999;sums = 0; min_value = 0
+        max_value = -(1<<31);sums = 0; min_value = 0
         for i in range(len(nums)):
             sums += nums[i]
             max_value = max(max_value,sums-min_value)

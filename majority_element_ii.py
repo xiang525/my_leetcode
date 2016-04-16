@@ -75,7 +75,7 @@ class Solution(object):
         :rtype: List[int]
         """
         if not nums:return []
-        count1,count2,e1,e2 = 0,0,0,1
+        count1,count2,e1,e2 = 0,0,0,1 #e1和e2初始值不能一样
         for i in nums:
             if i == e1: count1+=1
             elif i == e2: count2+=1

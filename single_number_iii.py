@@ -11,14 +11,14 @@ class Solution(object):
         xor = 0
         for i in range(len(nums)):
             xor ^= nums[i]
-        lastBit = xor - (xor&(xor-1))
+        lastBit = xor - (xor&(xor-1))#视频里讲得很好，为什么是这样
         group1 = 0; group2 = 0
         for i in range(len(nums)):
             if (lastBit & nums[i]) == 0:
                 group1 ^= nums[i]
             else:
                 group2^= nums[i]
-        return [group1,group2
+        return [group1,group2]
 
 
 

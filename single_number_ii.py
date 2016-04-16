@@ -152,6 +152,33 @@ class Solution(object):
             x -= 2**32
         return x
 
+"""
+九章的python写法，我加以改进
+"""
+class Solution(object):
+    def singleNumber(self, A):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        n = len(A)
+        d = [0 for i in xrange(32)]
+        for x in A:
+            for j in xrange(32):
+                if ((1 << j) & x):
+                    d[j] += 1
+        ans = 0
+        for j in xrange(32):
+            t = d[j] % 3
+            if t:
+                ans += (1 << j)
+        return self.convert(ans)
+        
+    def convert(self,x):
+        if x >= 2**31:
+            x -= 2**32
+        return x
+
 
 
 

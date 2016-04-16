@@ -4,7 +4,7 @@ class Solution:
     # @param {integer[]} nums
     # @return {integer}
 
-    # 解法1
+    # 解法1,用了O(n)space，不是最优解
     def majorityElement(self, nums):
 		freq = len(nums)/2		
 		major_elem = []
@@ -36,7 +36,8 @@ class Solution:
 
     	
 
-"""The Third Time
+"""
+The Third Time，不是最优解
 """
 class Solution:
     # @param {integer[]} nums
@@ -57,7 +58,8 @@ class Solution:
 
 
 """
-jiuzhang O(n) solution:出来打架， 一个对一个， 最后剩的就是majority majority element
+jiuzhang O(n), O(1) space solution:
+抵消的思想：出来打架， 一个对一个， 最后剩的就是majority majority element
 """
 class Solution:
     # @param {integer[]} nums
@@ -73,14 +75,6 @@ class Solution:
             else:
                 count -= 1
         return candidate
-
-
-
-
-
-
-
-
 
     			
 

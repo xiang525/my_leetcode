@@ -118,7 +118,7 @@ class LRUCache:
     	self.cache[key] = value
 
 """
-jiuzhang solution: LinkedList 
+jiuzhang solution: single LinkedList 
 """
 class LinkedNode:
     

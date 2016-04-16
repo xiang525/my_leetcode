@@ -22,8 +22,8 @@ class Solution:
 
 
 """
-jiuzhang solution: use hash 
-用每个元素进出数据结构的次数来判断时间复杂度
+jiuzhang solution: use hash O(n)--每个元素进出dictionary的次数为1，so running time is O(n)
+用每个元素进出数据结构的次数来判断时间复杂度;左边右边都要看
 """
 class Solution(object):
     def longestConsecutive(self, nums):
@@ -33,8 +33,7 @@ class Solution(object):
         """
         d = dict(); n = len(nums); longest = 0
         for i in range(n):
-            if nums[i] not in d:
-                d[nums[i]] = 1
+            d[nums[i]] = 1 #用hash的目的是为了O(1)查找
         
         for i in range(n):
             down = nums[i]-1
