@@ -142,7 +142,7 @@ class Solution(object):
 
 
 """
-discussion的解法
+discussion的解法;注意去重的处理； O(nlogn) + O(n^2) = O(n^2)
 """
 class Solution(object):
     def threeSum(self, nums):
@@ -152,8 +152,8 @@ class Solution(object):
         """
         nums.sort()
         ans = []; n = len(nums)    
-        for i in range(n-2):
-            if i > 0 and nums[i]==nums[i-1]:
+        for i in range(n-1):
+            if i  and nums[i]==nums[i-1]:
                 continue
             left = i + 1; right = n-1
             while left < right:
@@ -161,9 +161,9 @@ class Solution(object):
                 if sums == 0:
                     ans.append(([nums[i],nums[left],nums[right]]))
                     
-                    while left < right and nums[left] == nums[left+1]:
+                    while left < right and nums[left] == nums[left+1]: # 去重
                         left += 1
-                    while left < right and nums[right] == nums[right-1]:
+                    while left < right and nums[right] == nums[right-1]: # 去重
                         right -= 1
                     left += 1;right -= 1
                 elif sums < 0:  #注意一定要是elif

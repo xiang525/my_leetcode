@@ -29,3 +29,21 @@ class Solution(object):
             min_value = min(min_value,prices[i])
             profit = max(profit,prices[i]-min_value)            
         return profit
+
+"""
+my own Solution
+"""
+class Solution(object):
+    def maxProfit(self, prices):
+        """
+        :type prices: List[int]
+        :rtype: int
+        """
+        if len(prices) <=1:return 0
+        minValue = prices[0];profits = 0;maxProfits = 0
+        for i in range(len(prices)):
+            profits = prices[i] - minValue
+            minValue = min(minValue,prices[i])
+            maxProfits = max(maxProfits,profits)
+        return maxProfits
+        

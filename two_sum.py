@@ -36,6 +36,7 @@ class Solution:
 """
 # Solution: 首先复制一份array，对其进行排序，找到符合条件的两个数 (use two pointers)，
 # 再在原数组里找到index。利用字典的hash来查找，时间复杂度O(n），空间复杂度O(n)。
+背下来
 """
 
 class Solution:
@@ -172,6 +173,38 @@ class Solution(object):
                         break
                 ans.sort()
                 break
+        return ans
+
+"""
+我自己的对冲型指针 + 去重解法, O(nlogn) + O(n)不是最优解
+"""
+class Solution(object):
+    def twoSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        ans = [];n = len(nums)
+        copy = nums[:]
+        nums.sort()
+        left = 0;right = n-1
+        while left < right:
+            if (nums[left]+nums[right]) == target:
+                for i in range(len(copy)):
+                    if copy[i] == nums[left]:
+                        ans.append(i)
+                    elif copy[i] == nums[right]:
+                        ans.append(i)
+                while left < right and nums[left] == nums[left+1]:
+                    left += 1
+                while left < right and nums[right] == nums[right-1]:
+                    right -= 1
+                left += 1; right -= 1
+            elif (nums[left]+nums[right]) > target:
+                right -= 1
+            else:
+                left += 1
         return ans
 
 
