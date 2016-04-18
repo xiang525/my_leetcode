@@ -43,7 +43,7 @@ class Solution(object):
                 red += 1
             elif nums[i] == 2:
                 nums[i],nums[blue] = nums[blue],nums[i]
-                blue -= 1 # ==2时i不变 
+                blue -= 1 # ==2时i不变, 这里容易出错写成 i+=1
                 
             else:
                 i+=1

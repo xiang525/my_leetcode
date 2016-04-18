@@ -111,10 +111,10 @@ class Solution(object):
         """
         n = len(nums); ans = []
         nums.sort()
-        for i in range(n-3):
+        for i in range(n-1):
             if i and nums[i] == nums[i-1]:
                 continue
-            for j in range(i+1,n-2):
+            for j in range(i+1,n-1):
                 if j != i+1 and nums[j] == nums[j-1]:
                     continue
                 sums = target - nums[i] - nums[j]
@@ -132,6 +132,7 @@ class Solution(object):
                     else:
                         left += 1
         return ans
+        
 
 
 

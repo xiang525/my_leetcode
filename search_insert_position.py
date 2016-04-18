@@ -57,7 +57,7 @@ class Solution(object):
 
 
 """
-九章模板
+九章模板：找第一个比target大的数
 """
 class Solution(object):
     def searchInsert(self, nums, target):
