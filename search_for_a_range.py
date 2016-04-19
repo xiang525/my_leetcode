@@ -120,7 +120,7 @@ class Solution(object):
         else:
             return res
         
-        left = left; right = len(nums)-1
+        left = left; right = len(nums)-1 # 右边至少要从左边开始， 不能从0开始否则右边有可能 > 左边
         while left + 1 < right:
             m = (left+right)/2
             if nums[m] <= target:

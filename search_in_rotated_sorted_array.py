@@ -87,6 +87,66 @@ class Solution(object):
             return end
         return -1
 
+"""
+论坛里的递归被我改成非递归
+"""
+class Solution(object):
+    def search(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
+        if not nums:
+            return -1
+        start = 0; end = len(nums)-1
+        while start + 1 < end:
+            mid = (start+end)/2
+            if nums[mid] == target:
+                return mid
+            if nums[start] <= target < nums[mid]: # left side is sorted and has target
+                end = mid
+            elif nums[mid] < target <= nums[end]: # right side is sorted and has target
+                start = mid
+            elif nums[mid] > nums[end]: # right side is pivoted
+                start = mid
+            else:
+                end = mid 
+        if nums[start] == target:return start
+        elif nums[end] == target:return end
+        return -1
+
+
+"""
+论坛里的递归 
+"""
+class Solution(object):
+    def search(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
+        
+        if not nums:
+            return -1
+        return self.binarySearch(nums, target, 0, len(nums)-1)
+
+    def binarySearch(self, nums, target, start, end):
+        if end < start:
+            return -1
+        mid = (start+end)/2
+        if nums[mid] == target:
+            return mid
+        if nums[start] <= target < nums[mid]: # left side is sorted and has target
+            return self.binarySearch(nums, target, start, mid-1)
+        elif nums[mid] < target <= nums[end]: # right side is sorted and has target
+            return self.binarySearch(nums, target, mid+1, end)
+        elif nums[mid] > nums[end]: # right side is pivoted
+            return self.binarySearch(nums, target, mid+1, end)
+        else: # left side is pivoted
+            return self.binarySearch(nums, target, start, mid-1)
+
 
 
 

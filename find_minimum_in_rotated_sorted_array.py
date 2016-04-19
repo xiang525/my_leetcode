@@ -147,7 +147,28 @@ class Solution(object):
                 left = m
         return min(nums[left],nums[right])
 
-
+"""
+模板写法
+"""
+class Solution(object):
+    def findMin(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        if not nums:return None
+        n = len(nums)
+        left = 0; right = n-1
+        while left + 1 < right:
+            mid = (left+right)/2
+            if nums[mid] > nums[-1]:# 和nums[0]比较不能判断最小值在哪一边
+                left = mid
+            elif nums[mid] < nums[-1]:
+                right = mid
+        if nums[left] < nums[right]:
+            return nums[left]
+        else:
+            return nums[right]
 
 
 
