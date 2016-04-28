@@ -70,7 +70,7 @@ class Solution(object):
 
 
 """
-整数滚动的方法很妙
+整数滚动的方法很妙; Summary:一旦涉及到int就要考虑溢出
 """
 class Solution:
     # @param {integer} x
@@ -91,9 +91,29 @@ class Solution:
         else:
             return ans
 
-"""Summary:一旦涉及到int就要考虑溢出
-"""
 
+"""
+My own solution
+"""
+class Solution(object):
+    def reverse(self, x):
+        """
+        :type x: int
+        :rtype: int
+        """
+        sign = 1
+        if x < 0:
+            sign = -1
+            x = abs(x)
+        x = str(x)
+        print x
+        tmp = int(''.join(x[::-1]))
+        print tmp
+        ans = sign*tmp
+        print ans
+        if ans > (1<<31)-1 or ans < -(1<<31):
+            return 0
+        return ans
 
 
 

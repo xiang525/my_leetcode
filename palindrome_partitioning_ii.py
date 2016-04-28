@@ -31,4 +31,12 @@ class Solution(object):
                 if temp[:] == temp[::-1]:
                     dp[i] = min(dp[i],dp[j] + 1)
         return dp[n]  #字符串考虑多开一个所以返回是n 不是 n-1
-    	
+
+
+
+
+
+
+
+       
+     	

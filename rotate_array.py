@@ -55,13 +55,14 @@ class Solution(object):
         k = k % len(nums)  # k可以大于n 
         n = len(nums)
     
-        self.reverse(nums,0,n-1-k)
-        print nums
-        self.reverse(nums,n-k,n-1)
-        print nums
+        self.reverse(nums,0,n-1-k) #弄清楚k的含义， 不要想当然     
+        self.reverse(nums,n-k,n-1)        
         self.reverse(nums,0,n-1)
-        print nums
-        
+      
+     
+    """
+    收尾两个指针交换直到相邻；数组的逆序
+    """   
     def reverse(self,s,begin,end):
         while begin < end:
             s[begin],s[end] = s[end],s[begin]
@@ -69,6 +70,22 @@ class Solution(object):
             end -= 1
         
 
+
+"""
+My own solution
+"""
+class Solution(object):
+    def rotate(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: void Do not return anything, modify nums in-place instead.
+        """
+        i = 1
+        while i <= k:
+            pop = nums.pop()
+            nums.insert(0,pop)
+            i += 1
     	
 if __name__ == '__main__':
  	a = Solution()

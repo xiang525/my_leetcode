@@ -79,8 +79,8 @@ class Solution:
             curr = queue.pop()
             for neighbor in curr.neighbors:
                 if neighbor not in map:
-                    copy = UndirectedGraphNode(neighbor.label)
-                    map[curr].neighbors.append(copy)
+                    copy = UndirectedGraphNode(neighbor.label) #如果不用copy存储会多次生成新node
+                    map[curr].neighbors.append(copy)  # 点和边同时clone
                     map[neighbor] = copy
                     queue.append(neighbor)
                 else:                    

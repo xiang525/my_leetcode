@@ -52,7 +52,25 @@ class Solution:
                 left = mid + 1
 
 
-
+"""
+还可以这样写
+"""
+class Solution(object):
+    def mySqrt(self, x):
+        """
+        :type x: int
+        :rtype: int
+        """
+        if x <= 0 :return 0
+        left = 0; right = 1<<31
+        while left+1 < right:
+            mid = (left+right)/2
+            if mid**2 <= x < (mid+1)**2:
+                return mid
+            elif mid**2 > x:
+                right = mid
+            else:
+                left = mid 
                     
 
 

@@ -47,7 +47,7 @@ class Solution:
 """
 九章solution
 """
-class Solution:
+class Solution
     # @param triangle, a list of lists of integers
     # @return an integer
     def minimumTotal(self, triangle):

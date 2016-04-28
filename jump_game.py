@@ -62,7 +62,7 @@ class Solution(object):
         """
         maxValue = 0
         for i in range(len(nums)):
-            if maxValue < i:
+            if maxValue < i:# 只有前面又一次达到 > i就可以了
                 return False
             maxValue = max(maxValue,i+nums[i]) # 最大值每次jump后都会更新
         return True
@@ -89,10 +89,24 @@ class Solution(object):
         return dp[n-1] >= 0
 
 
-
-
-
-
+"""
+序列型dp的解法超时 O(n^2)
+"""
+class Solution(object):
+    def canJump(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        n = len(nums)
+        dp = [False for i in range(n)]
+        dp[0] = True
+        for i in range(1,n):
+            for j in range(i):
+                if dp[j] and (j + nums[i] >= i):
+                    dp[i] = True
+                    break
+        return dp[n-1]
 
 
 

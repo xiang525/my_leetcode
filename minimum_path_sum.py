@@ -32,10 +32,10 @@ class Solution:
         dp[0][0] = grid[0][0]
 
         for i in range(1,m):
-            dp[i][0] = dp[i-1][0] + grid[i][0]
+            dp[i][0] = dp[i-1][0] + grid[i][0] #理解含义--从[0][0]到[i][0]只能往下走
 
         for j in range(1,n):
-            dp[0][j] = dp[0][j-1] + grid[0][j]
+            dp[0][j] = dp[0][j-1] + grid[0][j]#理解含义--从[0][0]到[0][j]只能往右走
 
         for i in range(1,m):
             for j in range(1,n):

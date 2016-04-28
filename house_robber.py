@@ -14,12 +14,14 @@ class Solution:
 
 
 
-
+"""
 # ************ The Second Time **********
 # Solution: dp[i]表示盗窃i家的最大收益值
 # dp[0] = num[0] （当i=0时）
 # dp[1] = max(num[0], num[1]) （当i=1时）
 # dp[i] = max(num[i] + dp[i - 2], dp[i - 1]) （当i !=0 and i != 1时）
+注意corner cases
+"""
 class Solution:
     # @param {integer[]} nums
     # @return {integer}
@@ -37,8 +39,6 @@ class Solution:
             dp[i] = max(dp[i-1],dp[i-2]+nums[i])
         return dp[n-1]
 
-"""注意corner cases
-"""
 
 """
 jiuzhang solution搞复杂了

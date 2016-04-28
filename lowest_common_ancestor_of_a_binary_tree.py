@@ -11,7 +11,7 @@ class Solution(object):
         :rtype: TreeNode
         """
         if not root:return None
-        if root is p or root is q:
+        if root is p or root is q:#找到第一个点就return了， 这是关键
             return root
         left = self.lowestCommonAncestor(root.left,p,q)
         right = self.lowestCommonAncestor(root.right,p,q)

@@ -28,4 +28,23 @@ class Solution:
     def reverseWords(self, s):  
         return ' '.join(s.split()[::-1])
 
-
+"""
+九章的三步反转法
+"""
+class Solution(object):
+    def reverseWords(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        
+        if not s:return ''
+        tmp = s.split()
+        return ' '.join(self.reverse(tmp,0,len(tmp)-1))        
+        
+    def reverse(self,s,begin,end):
+        while begin < end:
+            s[begin],s[end] = s[end],s[begin]
+            begin += 1
+            end -= 1
+        return s

@@ -115,7 +115,7 @@ class Solution(object):
             level = []
             size = len(queue)
             for i in range(size):                
-                head = queue.pop(0)
+                head = queue.pop(0) #关键是从前面出站每次！！！
                 level.append(head.val)
                 if head.left:
                     queue.append(head.left)
@@ -126,7 +126,31 @@ class Solution(object):
         return result
 
 
-
+"""
+以下做法是行不通的：e.g., [1,2,3,4,5] --> [[1],[2,4],[5,3]]
+expected answer: [[1],[2,3],[4,5]]
+"""
+class Solution(object):
+    def levelOrder(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[List[int]]
+        """
+        if not root:return []
+        stack = [root];ans = []
+        while stack:
+            size = len(stack)
+            tmp = []
+            for i in range(size):
+                pop = stack.pop()
+                print pop.val
+                tmp.append(pop.val)
+                if pop.right:
+                    stack.append(pop.right)
+                if pop.left:
+                    stack.append(pop.left)
+            ans.append(tmp)
+        return ans
 
 
 

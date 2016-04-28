@@ -69,7 +69,7 @@ class Solution(object):
             a = A[k/2-1]
         if len(B) >= k/2:
             b = B[k/2-1]
-        if b is None or (a is not None and a < b):
+        if b is None or (a is not None and a < b): #要考虑A, B没有k/2个元素的情况
             return self.findMedian(A[k/2:],B,k-k/2)
         return self.findMedian(A,B[k/2:],k-k/2)
             

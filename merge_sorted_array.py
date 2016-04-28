@@ -51,7 +51,7 @@ class Solution(object):
 
 
 """
-从尾部开始比较的方法:最优解法
+从尾部开始比较的方法:最优解法 O(m+n)
 """
 class Solution(object):
     def merge(self, nums1, m, nums2, n):

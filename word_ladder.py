@@ -66,7 +66,7 @@ class Solution(object):
         wordlength = len(beginWord)        
         while queue:
             tmp = queue.pop(0)
-            cur = tmp[0];length = tmp[1]
+            cur = tmp[0];length = tmp[1] # length 不能设为全局变量
             if cur == endWord:return length
             for i in range(wordlength):
                 part1 = cur[:i]; part2 = cur[i+1:]
