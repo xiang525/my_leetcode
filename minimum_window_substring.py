@@ -34,7 +34,50 @@ class Solution:
             return S[minStart:minStart+minSize]
 
 
-
+"""
+九章模板， 这样写代码更清晰
+"""
+class Solution(object):
+    def minWindow(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: str
+        """
+        source = {};target= {}
+        n = len(s); j = 0
+        self.helper(target,t)
+        ans = '';minLen = sys.maxint
+        
+        for i in range(n):
+            while j < n and (self.isValid(source,target) == False):
+                    if s[j] not in source:
+                        source[s[j]] = 1
+                    else:
+                        source[s[j]] += 1
+                    j += 1
+                    
+            if self.isValid(source,target):
+                if minLen > j - i + 1:
+                    minLen = j - i + 1
+                    ans = s[i:j]
+            source[s[i]] -= 1
+        return ans
+            
+        
+        
+    def isValid(self,source,target):
+        for i in target:
+            if i not in source or target[i] > source[i]:
+                return False
+        return True
+    
+    def helper(self,d,strs):
+        for e in strs:
+            if e not in d:
+                d[e] = 1
+            else:
+                d[e] += 1
 
 
 

@@ -42,6 +42,26 @@ class Solution(object):
                 ans.append(nums[deque[0]])
         return ans
 
-
+"""
+用deque的实现 O(n)
+"""
+from collections import deque
+class Solution(object):
+    def maxSlidingWindow(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: List[int]
+        """
+        ans = [];q = deque(); n = len(nums)
+        for index in range(n):
+            if q and q[0] == index - k:
+                q.popleft()
+            while q and nums[q[-1]] < nums[index]:
+                q.pop()
+            q.append(index)
+            if index + 1 >= k:
+                ans.append(nums[q[0]])
+        return ans
 
 

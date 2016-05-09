@@ -159,5 +159,29 @@ class Solution(object):
         if res == (1<<31):return 0
         return res
 
+"""
+比较好的写法
+"""
+class Solution(object):
+    def minSubArrayLen(self, s, nums):
+        """
+        :type s: int
+        :type nums: List[int]
+        :rtype: int
+        """
+        n = len(nums)
+        if not nums:return 0
+        minlen = sys.maxint; j = 0;sums = 0
+        for i in range(n):
+            while j < n and sums < s:
+                sums += nums[j]
+                j += 1
+            if sums >= s:
+                minlen = min(minlen, j-i)
+            sums -= nums[i]
+        if minlen == sys.maxint:return 0
+        return minlen
+        
+
 
 

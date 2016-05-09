@@ -66,6 +66,35 @@ class Solution:
         dfs(0,'',res)
         return res
 
+"""
+更简洁的写法
+"""
+class Solution(object):
+    def letterCombinations(self, digits):
+        """
+        :type digits: str
+        :rtype: List[str]
+        """
+        def dfs(start,value):
+            if start == len(digits):
+                ans.append(value)
+                return 
+            for i in d[digits[start]]:
+                dfs(start+1,value+i)
+        if not digits:return []
+        ans = []
+        d = {'2':['a','b','c'],
+                '3':['d','e','f'],
+                '4':['g','h','i'],
+                '5':['j','k','l'],
+                '6':['m','n','o'],
+                '7':['p','q','r','s'],
+                '8':['t','u','v'],
+                '9':['w','x','y','z']
+                }
+        dfs(0,'')
+        return ans
+
 
 
 

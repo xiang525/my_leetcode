@@ -24,7 +24,8 @@ class Solution:
 
 
 
-"""DP
+"""
+DP
 """
 class Solution:
     # @return a boolean

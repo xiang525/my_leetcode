@@ -54,6 +54,6 @@ class MedianFinder:
         :rtype: float
         """
         if len(self.left) == len(self.right):
-            return float(self.left[0] - self.right[0])/2.0
+            return float(self.left[0] - self.right[0])/2.0 #self.left[0]是left里的最大值因为pop()每次从后面pop出的是最小值
         else:
             return float(self.left[0])

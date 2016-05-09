@@ -12,27 +12,6 @@ class Solution:
 
 
 
-# ********** The Second Time ***********
-# 一下做法产生TLE: Time Limit Exceeded
-class Solution:
-    # @param {integer[]} nums
-    # @param {integer} target
-    # @return {integer[]}
-    def twoSum(self, num, target):
-        n = len(num)
-        d = {}
-        for i in range(n):
-            d[num[i]] = i
-        for i in range(n):
-            x = num[i]
-            if target - x in num:
-                if d[x] < d[target-x]:
-                    return d[x],d[target-x]
-                else:
-                    return d[target-x],d[x]
-
-
-
 """
 # Solution: 首先复制一份array，对其进行排序，找到符合条件的两个数 (use two pointers)，
 # 再在原数组里找到index。利用字典的hash来查找，时间复杂度O(n），空间复杂度O(n)。

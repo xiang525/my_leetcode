@@ -95,7 +95,7 @@ class Trie:
             node = node.childs.get(letter)
             if node == None:
                 return False
-        return node.isWord  #?? why not using True
+        return node.isWord  #?? why not using True 因为要判断必须是结尾
         
 
     # @param {string} prefix

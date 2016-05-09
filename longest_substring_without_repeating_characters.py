@@ -85,6 +85,26 @@ class Solution(object):
         return length
 
 
+"""
+my own way
+"""
+class Solution(object):
+    def lengthOfLongestSubstring(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        if not s: return 0
+        d = {}; n = len(s); j = 0; maxLength = 0
+        for i in range(n):
+            while j < n and s[j] not in d:
+                d[s[j]] = 1
+                maxLength = max(maxLength, j-i+1)
+                j += 1
+            del d[s[i]]
+        return maxLength
+
+
 
 
 

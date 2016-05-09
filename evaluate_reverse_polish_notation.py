@@ -83,7 +83,38 @@ class Solution:
                 return a/b
 
 
-
+"""
+九章的解法
+"""
+class Solution(object):
+    def evalRPN(self, tokens):
+        """
+        :type tokens: List[str]
+        :rtype: int
+        """
+        stack = []; n = len(tokens)
+        for i in tokens:
+            if i not in ('+','-','*','/'):
+                stack.append(int(i))
+            else:
+                b = stack.pop()  #注意顺序是反的
+                a = stack.pop()
+                result = self.compute(a,b,i)
+                stack.append(result)
+        return stack[0]
+                
+                
+                
+    def compute(self,a,b,op):
+        if op == '+':
+            return (a+b)
+        elif op == '-':
+            return (a-b)
+        elif op == '*':
+            return a*b
+        else:
+            if b != 0:
+                return int(a*1.0/b) #处理小数问题
 
 
 

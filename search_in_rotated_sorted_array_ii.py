@@ -57,7 +57,7 @@ class Solution(object):
 
 
 """
-最直白的解法， 九章给出的
+正确的做法
 """
 class Solution(object):
     def search(self, nums, target):
@@ -66,12 +66,33 @@ class Solution(object):
         :type target: int
         :rtype: bool
         """
+       
         if not nums:return False
-        for i in range(len(nums)):
-            if nums[i] == target:
-                return True
+        n = len(nums)
+        left = 0; right = n-1
+        while left+1 < right:
+            mid = (left+right)/2
+            if nums[mid] == target:return True
+            while mid <= right and nums[mid] == nums[right]: #两者取其一即可
+                  right -= 1
+            # while left < mid and nums[mid] == nums[left]:
+            #      left += 1
+                
+            if nums[left] <= nums[mid]:
+                if nums[left]<= target < nums[mid]:
+                    right = mid
+                else:
+                    left = mid
+            else:
+                if nums[mid] < target <= nums[right]:
+                    left = mid
+                else:
+                    right = mid                
+                
+                
+        if nums[left] == target:return True
+        elif nums[right] == target:return True
         return False
-
 
 
         

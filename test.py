@@ -1,30 +1,28 @@
 class Solution(object):
-    def hIndex(self, citations):
-        """
-        :type citations: List[int]
-        :rtype: int
-        """
-        N = len(citations)
-        cnts = [0] * (N + 1)
-        for c in citations:         
-            cnts[[c, N][c > N]] += 1
-      
+    # in-place
+    def reverseWords(self, s):
+    # reverse the whole list
+        self.reverse(s, 0, len(s) - 1)
 
-        sums = 0
-        for h in range(N, 0, -1):
-            print h
-            if sums + cnts[h] >= h:
-                return h
-            sums += cnts[h]
-        return 0
-
-
+        beg = 0
+        for i in xrange(len(s)):
+            if s[i] == ' ':
+                self.reverse(s, beg, i-1)
+                beg = i + 1
+            elif i == len(s) -1:
+                self.reverse(s, beg, i)
+        print s
+    
+    def reverse(self, s, start, end):
+        while start < end:
+            s[start], s[end] = s[end], s[start]
+            start += 1
+            end -= 1            
 
 
 if __name__ == '__main__':
     a = Solution()
-    print a.hIndex([3, 0, 6, 1, 2,7])
-
+    a.reverseWords(["a b"])
 
 
 
