@@ -36,6 +36,34 @@ class Solution:
         return self.dfs(1, n)
 
 
+"""
+另一种写法, 思路和95题很类似
+"""
+class Solution(object):
+    def generateTrees(self, n):
+        """
+        :type n: int
+        :rtype: List[TreeNode]
+        """
+        if n == 0: return []
+        return self.dfs(1,n)        
+        
+        
+    def dfs(self,start,end):
+        if start > end: return [None]
+        res = []
+        for rootval in range(start,end+1):
+            left = self.dfs(start,rootval-1)
+            right = self.dfs(rootval+1,end)
+            for i in left:
+                for j in right:
+                    root = TreeNode(rootval)
+                    root.left = i
+                    root.right = j
+                    res.append(root)
+        return res
+
+
 
 
 

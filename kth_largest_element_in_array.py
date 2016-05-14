@@ -37,6 +37,7 @@ class Solution:
 
 """
 注意是第k大不是第k小， 所以从大的算起， 这个地方困惑了我半天
+O(nk)
 """
 class Solution(object):
     def findKthLargest(self, nums, k):

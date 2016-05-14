@@ -8,7 +8,7 @@ class Solution(object):
         :type str: str
         :rtype: bool
         """
-        cur = str.split()
+        cur = str.split()# 这个必须放前面否则后面m, n不对
         d = {};n = len(pattern); m = len(cur)
         if n != m:return False
         for i in range(n):

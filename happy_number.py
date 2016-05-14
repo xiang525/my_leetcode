@@ -19,7 +19,30 @@ class Solution:
             n = sum
         return n == 1  	
 
-
+"""
+另一种写法
+"""
+class Solution(object):
+    def isHappy(self, n):
+        """
+        :type n: int
+        :rtype: bool
+        """
+       
+        def helper(n,sums):
+            while n:
+                digit = n % 10
+                sums += digit **2
+                n /= 10
+            n = sums
+            return n
+            
+        numSet = set()
+        while n != 1 and n not in numSet:
+            numSet.add(n)
+            sums = 0
+            n = helper(n,sums)
+        return n == 1
 
   
 

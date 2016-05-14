@@ -1,9 +1,11 @@
-"""Solution 1:
 """
+Solution 1:
+
 # 解题思路：这道题不只像word break那样判断是否可以分割，而且要找到所有的分割方式，那么我们就要考虑dfs了。
 # 不过直接用dfs解题是不行的，为什么？因为决策树太大，如果全部遍历一遍，时间复杂度太高，无法通过oj。
 # 那么我们需要剪枝，如何来剪枝呢？使用word break题中的动态规划的结果，在dfs之前，先判定字符串是否可以被分割，
 # 如果不能被分割，直接跳过这一枝。实际上这道题是dp+dfs。
+"""
 class Solution:
     # @param s, a string
     # @param wordDict, a set<string>
@@ -31,7 +33,8 @@ class Solution:
     	return Solution.res
 
 
- """Solution 2: Recrusive
+ """
+ Solution 2: Recrusive
  	解题思路：记忆化搜索
 	在搜索过程中，使用字典tokenDict (d) 将已经搜索过的子句的拆解方案记录下来，从而实现DFS的剪枝。
  """

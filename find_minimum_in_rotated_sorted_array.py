@@ -171,6 +171,28 @@ class Solution(object):
             return nums[right]
 
 
+"""
+另一种写法
+"""
+class Solution(object):
+    def findMin(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        n = len(nums)
+        left = 0; right = n -1 
+        while left + 1 < right:
+            mid = (left+right)/2
+            if nums[mid] > nums[right]:
+                left = mid
+            else:
+                right = mid
+        if nums[left] < nums[right]: return nums[left]
+        else:
+            return nums[right]
+
+
 
 
 

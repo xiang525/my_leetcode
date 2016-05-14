@@ -76,7 +76,26 @@ class Solution(object):
             self.dfs(left,right-1,item+')',value)
         
 
-
+"""
+从零开始的写法
+"""
+class Solution(object):
+    def generateParenthesis(self, n):
+        """
+        :type n: int
+        :rtype: List[str]
+        """
+        def dfs(left,right,value):
+            if right > left: return
+            if left == n and right == n:
+                ans.append(value)
+            if left < n:
+                dfs(left+1,right,value+'(')
+            if right < n:
+                dfs(left,right+1,value+')')
+        ans = []
+        dfs(0,0,'')
+        return ans
 
 
 

@@ -25,10 +25,10 @@
         i = len(res)
         dd = {}
         while n != 0:
-            if n not in d:
+            if n not in dd:
                 dd[n] = i # 哈希表存储余数及其位置
             else:
-                i = dd[n] # 重复的余数的位置
+                i = dd[n] # 重复的余数的位置, 找到循环开始的位置
                 res = res[:i] + '('+res[i:]+')'
                 return res
             n *= 10  # 余数扩大10倍再与被除数运算, 和手算是一样的

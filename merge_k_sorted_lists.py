@@ -43,6 +43,7 @@ class Solution:
 """
 merge two by two
 solution in discussion
+O(nlogk)
 """
 class Solution(object):
     def mergeKLists(self, lists):
@@ -76,7 +77,28 @@ class Solution(object):
         return dummy.next
 
 
-
+"""
+另一种写法
+"""
+class Solution(object):
+    def mergeKLists(self, lists):
+        """
+        :type lists: List[ListNode]
+        :rtype: ListNode
+        """
+        dummy = ListNode(0); p = dummy
+        heap = []
+        for e in lists:
+            if e:
+                heap.append((e.val,e))
+        heapq.heapify(heap)
+        while heap:
+            pop = heapq.heappop(heap)
+            p.next = ListNode(pop[0])
+            p = p.next
+            if pop[1].next:
+                heapq.heappush(heap,(pop[1].next.val,pop[1].next))
+        return dummy.next
 
 
 

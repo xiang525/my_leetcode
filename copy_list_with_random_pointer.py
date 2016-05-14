@@ -68,15 +68,15 @@ class Solution:
     def copyNext(self,head):
         while head:
             newNode = RandomListNode(head.label)
-            newNode.random = head.random
+            newNode.random = head.random #这是只是为了记录newNode有random以备后面用
             newNode.next = head.next
             head.next = newNode
             head = head.next.next
 
     def copyRandom(self,head):
         while head:
-            if head.next.random:
-                head.next.random = head.random.next
+            if head.next.random: #这里就用到了上面记录的random
+                head.next.random = head.random.next#原来的元素后面紧接的是copy的元素，两个random是挨在一起的
             head = head.next.next 
 
     def splitList(self,head):

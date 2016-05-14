@@ -37,3 +37,27 @@ class Solution(object):
             else:
                 d2[e] += 1
         return d1 == d2
+
+
+
+"""
+O(nlogn)不是最优解
+"""
+class Solution(object):
+    def isAnagram(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: bool
+        """
+        d = {}
+        d[''.join(sorted(s))] = s
+        if ''.join(sorted(t)) in d:
+            return True
+        else:
+            return False
+
+
+
+
+            

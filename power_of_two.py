@@ -13,3 +13,15 @@ class Solution(object):
             else:
                 return False
         return True
+
+
+"""
+bits的做法
+"""
+class Solution(object):
+    def isPowerOfTwo(self, n):
+        """
+        :type n: int
+        :rtype: bool
+        """
+        return n > 0 and not n & (n-1)

@@ -72,7 +72,7 @@ class Solution(object):
                 return False
         return True
     
-    def helper(self,d,strs):
+    def helper(self,d,strs): #个数也是要匹配的所以用字典记录
         for e in strs:
             if e not in d:
                 d[e] = 1
