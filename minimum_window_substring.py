@@ -80,10 +80,72 @@ class Solution(object):
                 d[e] += 1
 
 
+"""
+另一种简洁一点的写法
+"""
+class Solution(object):
+    def minWindow(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: str
+        """
+        if not s and t: return ''
+        n = len(s); j = 0; ans = ''; minLen = sys.maxint
+        source = collections.defaultdict(int); target = collections.defaultdict(int)
+        self.helper(target,t)
+        for i in range(n):
+            while j < n and (self.isValid(source,target) == False):
+                source[s[j]] += 1
+                j += 1
+            if self.isValid(source, target):
+                if minLen > j-i + 1:
+                    minLen = j - i + 1
+                    ans = s[i:j]
+            source[s[i]] -= 1
+        return ans
+    
+    def isValid(self,a,t):
+        for i in t:
+            if i not in a or a[i] < t[i]:
+                return False
+        return True
+    
+    def helper(self,d,strs):
+        for e in strs:
+            d[e] += 1
 
 
-
-
+"""
+我喜欢的写法
+"""
+class Solution(object):
+    def minWindow(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: str
+        """
+        def isValid(a,b):
+            for item in b:
+                if item not in a or a[item] < b[item]:
+                    return False
+            return True
+        source = collections.defaultdict(int)
+        target = collections.defaultdict(int)
+        for e in t:
+            target[e] += 1
+        ans = ''; j = 0; n = len(s); minLen = sys.maxint
+        for i in range(n):
+            while j < n and (isValid(source, target) == False):
+                source[s[j]] += 1
+                j += 1
+            if isValid(source, target):
+                if minLen > j-i+1:
+                    minLen = j-i+1
+                    ans = s[i:j]
+            source[s[i]] -= 1
+        return ans
 
 
 

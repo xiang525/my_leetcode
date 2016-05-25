@@ -37,7 +37,7 @@ class Solution:
                 return False
         return True
 
-
+"""
 # Solution: element in s as key in a dictionary while element in t as the key's value.
 # compare d[s[i]] with t[i], if equal then return True otherwise return False.
 # one dictinoary is enought no need to use two. 
@@ -46,7 +46,26 @@ class Solution:
 # 如果字符串s可以通过字符替换的方式得到字符串t，则称s和t是同构的。
 # 字符的每一次出现都必须被其对应字符所替换，同时还需要保证原始顺序不发生改变。两个字符不能映射到同一个字符，
 # 但是字符可以映射到其本身。测试样例如题目描述。可以假设s和t等长。
-
+"""
+class Solution(object):
+    def isIsomorphic(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: bool
+        """
+        d = {}; n = len(s)
+        for i in range(n):
+            if s[i] not in d:
+                if t[i] not in d.values():
+                    d[s[i]] = t[i]
+                else:
+                    return False
+            else:
+                if d[s[i]]!= t[i]:
+                    return False
+        return True
+        
 
 
         

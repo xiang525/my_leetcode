@@ -1,4 +1,6 @@
-import collections
+"""
+论坛里的解法， 关键是zip()用的很好
+"""
 class Solution(object):
     def alienOrder(self, words):
         """
@@ -6,13 +8,11 @@ class Solution(object):
         :rtype: str
         """
         
-        chars = set("".join(words))        
+        chars = set("".join(words))
         degrees = {x:0 for x in chars}
         graph = collections.defaultdict(list)
-        print words, words[1:],zip(words, words[1:])
         for pair in zip(words, words[1:]):
             for x, y in zip(*pair):
-                print pair, zip(*pair)
                 if x != y:
                     graph[x].append(y)
                     degrees[y] += 1
@@ -29,24 +29,3 @@ class Solution(object):
                     queue.append(n)
 
         return ret * (set(ret) == chars)
-           
-        
-              
-
-
-if __name__ == '__main__':
-    a = Solution()   
-    print a.alienOrder([
-  "wrt",
-  "wrf",
-  "er",
-  "ett",
-  "rftt"
-])
-
-
-
-
-
-
-

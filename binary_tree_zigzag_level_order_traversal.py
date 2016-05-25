@@ -16,7 +16,7 @@ class Solution:
     def preorder(self,root,level,res):
     	if root:
     		if len(res) < level + 1:
-    			res.append([])  # because of returning [][]
+    			res.append([])  # because of returning [][]???
     		if level % 2==0:  # even level
     			res[level].append(root.val) # 因为总是在首位插入， 所以是先right后left
     		else:
@@ -54,3 +54,37 @@ class Solution(object):
         if not root: return []
         bfs(root,0)
         return ans
+
+
+
+"""
+非递归的BFS写法
+"""
+class Solution(object):
+    def zigzagLevelOrder(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[List[int]]
+        """
+        if not root: return []
+        ans = []; stack = [root]; level = 0
+        while stack:
+            print level
+            tmp = []
+            size = len(stack)
+            for i in range(size):
+                pop = stack.pop(0)
+                if level % 2 == 0:
+                    tmp.append(pop.val)
+                else:
+                    tmp.insert(0,pop.val)
+                if pop.left:
+                    stack.append(pop.left)
+                if pop.right:
+                    stack.append(pop.right)
+            level += 1
+            ans.append(tmp)
+        return ans
+
+
+

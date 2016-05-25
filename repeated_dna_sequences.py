@@ -19,8 +19,6 @@ class Solution:
     	return res
 
 
-#  ******* The Second Time *********
-# 我的思路是对的， 但是细节处理不够好
 
 class Solution:
     # @param {string} s
@@ -46,6 +44,7 @@ class Solution:
 
 """
 The second programing way
+以下解法超烂
 """
 class Solution:
     # @param {string} s
@@ -62,6 +61,23 @@ class Solution:
                 if key not in ans:
                     ans.append(key)
         return ans
+
+
+"""
+论坛里的写法
+"""
+class Solution(object):
+    def findRepeatedDnaSequences(self, s):
+        """
+        :type s: str
+        :rtype: List[str]
+        """
+        d = collections.defaultdict(int) # int!!
+        for i in range(len(s)):
+            d[s[i:i+10]] += 1
+        return [key for key,val in d.iteritems() if val > 1]
+
+
 
 
 

@@ -28,7 +28,7 @@ class Solution:
 
 
 ##### The third time ############
-# the running time is O(n)
+# the running time is O(n),不是最优解
 class Solution(object):
     def searchRange(self, nums, target):
         """
@@ -94,7 +94,7 @@ class Solution(object):
 
 
 """
-jiuzhang 模板
+jiuzhang 模板; 对这道题模板太复杂不适用
 """
 class Solution(object):
     def searchRange(self, nums, target):

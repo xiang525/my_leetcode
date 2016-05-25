@@ -90,11 +90,11 @@ class Solution(object):
         heap = []
         for e in lists:
             if e:
-                heap.append((e.val,e))
+                heap.append((e.val,e)) #如果不push e.val没法pop出最小的值，需要一个数值用于建最小堆
         heapq.heapify(heap)
         while heap:
             pop = heapq.heappop(heap)
-            p.next = ListNode(pop[0])
+            p.next = ListNode(pop[0]) # p.next = pop[1]
             p = p.next
             if pop[1].next:
                 heapq.heappush(heap,(pop[1].next.val,pop[1].next))

@@ -129,6 +129,7 @@ class Solution(object):
 """
 以下做法是行不通的：e.g., [1,2,3,4,5] --> [[1],[2,4],[5,3]]
 expected answer: [[1],[2,3],[4,5]]
+因为前面没出完， 后面就已经又压入新的元素了，造成混乱！！！
 """
 class Solution(object):
     def levelOrder(self, root):
@@ -142,8 +143,7 @@ class Solution(object):
             size = len(stack)
             tmp = []
             for i in range(size):
-                pop = stack.pop()
-                print pop.val
+                pop = stack.pop()                
                 tmp.append(pop.val)
                 if pop.right:
                     stack.append(pop.right)

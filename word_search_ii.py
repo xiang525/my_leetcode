@@ -1,4 +1,6 @@
 """
+If the current candidate does not exist in all words' prefix, you could stop 
+backtracking immediately. That's why we use Trie tree.
 discussion 里的方法用trie树 + DFS
 """
 

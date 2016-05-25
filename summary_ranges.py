@@ -1,5 +1,7 @@
-# 两个指针 start, end.  如果nums[end+1] = nums[end]+1, 就移动end指针, 否则, 插入字符串nums[start]->nums[end]. 
-
+"""
+# 两个指针 start, end.  如果nums[end+1] = nums[end]+1, 就移动end指针, 
+否则, 插入字符串nums[start]->nums[end]. 
+"""
 class Solution:
     # @param {integer[]} nums
     # @return {string[]}
@@ -73,7 +75,29 @@ class Solution(object):
 
 
 
-
+"""
+另一种写法
+"""
+class Solution(object):
+    def summaryRanges(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[str]
+        """
+        n = len(nums); ans = []
+        begin = 0; end = 0
+        if n == 1: return [str(nums[0])]; tmp = ''
+        while end <= n-1:
+            while end < n-1 and nums[end]+1 == nums[end+1]:
+                end += 1
+            if begin == end:
+                tmp = str(nums[begin])
+            else:
+                tmp = str(nums[begin]) + '->' + str(nums[end])
+            ans.append(tmp)
+            begin = end + 1
+            end = begin
+        return ans
 
 
 

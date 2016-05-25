@@ -53,7 +53,25 @@ class Solution:
 
 
 
-
+"""
+my own solution
+"""
+class Solution(object):
+    def sortedArrayToBST(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: TreeNode
+        """
+        def helper(nums):
+            n = len(nums)
+            if n == 0: return None #递归要有一个终止条件
+            root = TreeNode(nums[n/2])
+            root.left = helper(nums[:n/2])
+            root.right = helper(nums[n/2+1:])
+            return root
+            
+        if not nums:return None
+        return helper(nums)
 
 
 

@@ -21,3 +21,25 @@ class Solution:
 
 """递归
 """
+
+
+"""
+另一种写法
+"""
+class Solution(object):
+    def isSymmetric(self, root):
+        """
+        :type root: TreeNode
+        :rtype: bool
+        """
+        def helper(node1,node2):
+            if node1 and node2:
+                return node1.val == node2.val and helper(node1.left, node2.right) and helper(node1.right, node2.left)
+            return node1 == node2
+        
+        if not root: return True
+        return helper(root.left, root.right)
+
+
+
+

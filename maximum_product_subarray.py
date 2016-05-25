@@ -49,7 +49,22 @@ class Solution:
         return max(ps)
 
 
-
+"""
+另一种写法
+"""
+class Solution(object):
+    def maxProduct(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        n = len(nums)
+        small = [0]*n; large = [0]*n
+        small[0] = nums[0]; large[0] = nums[0]
+        for i in range(1,n):
+            small[i] = min(nums[i], min(small[i-1]*nums[i], large[i-1]*nums[i]))
+            large[i] = max(nums[i], max(large[i-1]*nums[i], small[i-1]*nums[i]))
+        return max(large)
 
 
 

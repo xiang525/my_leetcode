@@ -36,6 +36,7 @@ class Solution:
             if p[i-1]=='*':
                 if i>=2:
                     dp[0][i]=dp[0][i-2]
+
         for i in range(1,len(s)+1):
             for j in range(1,len(p)+1):
                 if p[j-1]=='.':
@@ -50,3 +51,12 @@ class Solution:
 if __name__ == '__main__':
 	a = Solution()
 	print a.isMatch("ab","a*")
+
+
+
+
+
+
+
+
+    

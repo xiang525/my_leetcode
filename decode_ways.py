@@ -46,6 +46,7 @@ class Solution:
 
 """
 我自己的DP模板
+要考虑的corner case太多
 """
 class Solution(object):
     def numDecodings(self, s):
