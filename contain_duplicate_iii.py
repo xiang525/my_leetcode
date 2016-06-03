@@ -23,42 +23,61 @@ class Solution:
     	return False
 
 
-# ****** My own accepted soluiton ********
+"""
+论坛里桶排序的解法
+非常好！
+"""
 class Solution(object):
-    def containsNearbyDuplicate(self, nums, k):
+    def containsNearbyAlmostDuplicate(self, nums, k, t):
         """
         :type nums: List[int]
         :type k: int
+        :type t: int
         :rtype: bool
         """
-        d = dict()
-        for i in range(len(nums)):
-            if nums[i] not in d:
-                d[nums[i]] = i
-            else:
-                if abs(i-d[nums[i]]) <= k:
-                    return True
-                else:  # 这句很重要， 否则[1,0,1,1] and k =1 这种case 过不去
-                    d[nums[i]] = i
-        return False
-
-
- 
-# ********** The third solution *********
-class Solution(object):
-    def containsNearbyDuplicate(self, nums, k):
-        """
-        :type nums: List[int]
-        :type k: int
-        :rtype: bool
-        """
-        d = dict()
-        for i in range(len(nums)):
-            index = d.get(nums[i])
-            if index >= 0 and abs(i - index) <= k:
+        if t < 0: return False # 可以保证下面的w != 0
+        n = len(nums)
+        d = {}
+        w = t + 1
+        for i in xrange(n):
+            m = nums[i] / w
+            if m in d:
                 return True
-            d[nums[i]] = i 
+            if m - 1 in d and abs(nums[i] - d[m - 1]) < w:
+                return True
+            if m + 1 in d and abs(nums[i] - d[m + 1]) < w:
+                return True
+            d[m] = nums[i]
+            if i >= k: 
+                del d[nums[i - k] / w]
         return False
+
+
+"""
+另一种写法
+"""
+class Solution(object):
+    def containsNearbyAlmostDuplicate(self, nums, k, t):
+        """
+        :type nums: List[int]
+        :type k: int
+        :type t: int
+        :rtype: bool
+        """
+        if t < 0: return False
+        bucket = {}; n = len(nums)
+        w = t+1
+        for i in xrange(n):
+            m = nums[i] / w
+            if m in bucket: return True
+            if m-1 in bucket and abs(nums[i]-bucket[m-1]) <= t: return True
+            if m+1 in bucket and abs(nums[i] -bucket[m+1]) <= t: return True
+            bucket[m] = nums[i]
+            if i >= k:
+                del bucket[nums[i-k]/w]
+        return False
+            
+
 
 
 

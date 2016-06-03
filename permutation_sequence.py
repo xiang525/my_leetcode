@@ -15,9 +15,9 @@ class Solution:
     	res = ''
     	k -= 1
     	fac = 1
-    	for i in range(1,n):
+    	for i in range(1,n):  # 从1 开始
     		fac * = i  # for （n-1）! 
-    	num = [i for i in xrange(1,n+1)]
+    	num = [i for i in xrange(1,n+1)]# 从1 开始
     	for i in reversed(xrange(n)):
     		curr = num[k/fac]
     		res += str(curr)
@@ -28,30 +28,7 @@ class Solution:
     	return res
 
     	
-# ****************** 以下算法超时 ******************
-"""
-递归算法超时
-"""
-class Solution(object):
-    def getPermutation(self, n, k):
-        """
-        :type n: int
-        :type k: int
-        :rtype: str
-        """
-        def dfs(depth,start,value):
-           if depth == n:
-               ans.append(value)
-               return
-           for i in range(1,n+1):
-               if depth > n :break
-               if str(i) not in value:
-                dfs(depth+1,i+1,value+str(i))
-        
-        ans = []
-        dfs(0,1,"")
-        print ans
-        return ans[k-1]
+
 
 
 

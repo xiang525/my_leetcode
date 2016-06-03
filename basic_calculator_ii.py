@@ -86,7 +86,38 @@ class Solution:
         elif op == '/':
             operands.append(left / right)
         
-
+"""
+论坛里的解法
+"""
+class Solution(object):
+    def calculate(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        if not s: return "0"
+        stack, num, sign = [], 0, "+"
+        n = len(s)
+        for i in xrange(n):
+            if s[i].isdigit():
+                num = num*10+ord(s[i])-ord("0")
+                print num
+            if (not s[i].isdigit() and not s[i].isspace()) or i == n-1:
+                if sign == "-":
+                    stack.append(-num)
+                elif sign == "+":
+                    stack.append(num)
+                elif sign == "*":
+                    stack.append(stack.pop()*num)
+                else:
+                    tmp = stack.pop()
+                    if tmp/num < 0 and tmp%num != 0:
+                        stack.append(tmp/num+1)
+                    else:
+                        stack.append(tmp/num)
+                sign = s[i]
+                num = 0
+        return sum(stack)
             
 
 if __name__ == '__main__':

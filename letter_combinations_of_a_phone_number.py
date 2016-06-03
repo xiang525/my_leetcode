@@ -78,7 +78,7 @@ class Solution(object):
         def dfs(start,value):
             if start == len(digits):
                 ans.append(value)
-                return 
+                return #如果没有return的话， 后面会越界, 要小心处理  
             for i in d[digits[start]]:
                 dfs(start+1,value+i)
         if not digits:return []

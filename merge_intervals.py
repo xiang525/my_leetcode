@@ -54,7 +54,7 @@ class Solution:
         return res
         
 """
-论坛里非常简洁的写法
+论坛里非常简洁的写法 O(nlogn)主要是排序花时间了
 """
 class Solution(object):
     def merge(self, intervals):
@@ -70,6 +70,7 @@ class Solution(object):
             else:
                 res += i, # == append()
         return res
+
 
 
 

@@ -6,9 +6,9 @@ class Solution:
     # @param {integer} numRows
     # @return {integer[][]}
     def generate(self, numRows):
-    	a = [[1]* (i+1) for i in range(numRows)]    	
+    	a = [[1]* (i+1) for i in range(numRows)] # 这是核心	
     	for i in range(numRows):    			
-	        for j in range(1,  i):	        	
+	        for j in range(1,  i):# 这是核心      	
 	           	a[i][j] = a[i-1][j-1] + a[i-1][j]
 	           	
 	return a

@@ -19,13 +19,7 @@ class Trie():
             node = node.children[w]
         node.isWord = True
 
-    def search(self, word):
-        node = self.root
-        for w in word:
-            node = node.children.get(w)
-            if not node:
-                return False
-        return node.isWord
+    
 
 class Solution(object):
     def findWords(self, board, words):
@@ -47,15 +41,13 @@ class Solution(object):
             return 
         tmp = board[i][j]
         node = node.children.get(tmp)
-        if not node:
-            return 
+        if not node: return 
         board[i][j] = "#" #避免重复search
         self.dfs(board, node, i+1, j, path+tmp, res)
         self.dfs(board, node, i-1, j, path+tmp, res)
         self.dfs(board, node, i, j-1, path+tmp, res)
         self.dfs(board, node, i, j+1, path+tmp, res)
         board[i][j] = tmp
-
 
 
 

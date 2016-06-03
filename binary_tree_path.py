@@ -32,3 +32,27 @@ class Solution(object):
         if not root.left and not root.right:            
             Solution.ans.append(tmp[:-2])
         return self.paths(root.left,tmp) + self.paths(root.right,tmp)
+
+
+"""
+另一种写法 DFS 
+"""
+
+class Solution:
+    # @param {TreeNode} root
+    # @return {string[]}
+    def binaryTreePaths(self, root):
+        def dfs(root,path):
+            if not root: return []
+            path +=  '->' +str(root.val)#'->'占两格
+            if not root.left and not root.right:
+                ans.append(path[2:])
+            return dfs(root.left,path) + dfs(root.right,path)# 凡是求path的都是left+right
+        
+        ans = []
+        dfs(root,'')
+        return ans
+
+
+
+        

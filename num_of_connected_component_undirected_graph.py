@@ -1,3 +1,7 @@
+"""
+Union Find 
+"""
+
 class Solution(object):
     def countComponents(self, n, edges):
         def find(x): # 找祖先

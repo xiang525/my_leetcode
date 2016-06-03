@@ -21,7 +21,27 @@ class Solution(object):
         return [group1,group2]
 
 
-
+"""
+另一种写法
+"""
+class Solution(object):
+    def singleNumber(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        n = len(nums); xor = 0
+        for i in range(n):
+            xor ^= nums[i]
+        #lastBit = xor - (xor & (xor -1))
+        lastBit = xor & ~(xor-1) # 需要记忆
+        group1 = 0; group2 = 0
+        for i in range(n):
+            if (lastBit & nums[i]) == 0:
+                group1 ^= nums[i]
+            else:
+                group2 ^= nums[i]
+        return [group1,group2]
 
 
 

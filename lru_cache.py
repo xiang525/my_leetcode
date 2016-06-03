@@ -117,6 +117,54 @@ class LRUCache:
     		self.cache.popitem(last=False)
     	self.cache[key] = value
 
+
+
+
+"""
+另一种用OrderedDict()的写法;论坛里的写法
+"""
+class LRUCache(object):
+
+    def __init__(self, capacity):
+        """
+        :type capacity: int
+        """
+        self.capacity = capacity
+        self.hash = collections.OrderedDict()
+        
+
+    def get(self, key):
+        """
+        :rtype: int
+        """
+        if key not in self.hash:
+            return -1
+        value = self.hash.pop(key)
+        self.hash[key] = value # set key as the latest one
+        return value
+            
+        
+
+    def set(self, key, value):
+        """
+        :type key: int
+        :type value: int
+        :rtype: nothing
+        """
+        if key in self.hash:
+            self.hash.pop(key)
+        else:
+            if self.capacity > 0:
+                self.capacity -= 1
+            else:
+                self.hash.popitem(last=False) # FIFO
+        self.hash[key] = value
+
+
+
+
+
+
 """
 jiuzhang solution: single LinkedList 
 """

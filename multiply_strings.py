@@ -52,8 +52,41 @@ class Solution:
         return ''.join(ans)
 
 
+def multiply(self, num1, num2):
+        res = [0]* (len(num1) + len(num2))
+        for i, e1 in enumerate(reversed(num1)):
+            for j, e2 in enumerate(reversed(num2)):
+                res[i+j] += int(e1) * int(e2)
+                res[i+j+1] += res[i+j]/10
+                res[i+j] %= 10
+
+        while len(res) > 1 and res[-1] == 0: res.pop()
+        return ''.join( map(str,res[::-1]) )
 
 
+
+"""
+论坛里的更简洁的写法， 合二为一
+"""
+class Solution(object):
+    def multiply(self, num1, num2):
+        """
+        :type num1: str
+        :type num2: str
+        :rtype: str
+        """
+        num1 = num1[::-1]; num2 = num2[::-1]
+        m = len(num1); n = len(num2)
+        ans = [0]*(m+n)
+        
+        for i in range(m):
+            for j in range(n):
+                ans[i+j] += int(num1[i]) * int(num2[j])
+                ans[i+j+1] += ans[i+j]/10
+                ans[i+j] %= 10
+        while ans[-1] == 0 and len(ans) > 1:#因为是反的， 所以要看最后一位
+            ans.pop()
+        return ''.join(map(str,ans[::-1]))#ans都是int所以要变为str
         
 
 

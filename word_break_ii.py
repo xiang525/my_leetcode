@@ -35,6 +35,7 @@ class Solution:
 
 """
 边界的处理也可以这样写
+DFS + DP 
 """
 class Solution(object):
     def wordBreak(self, s, wordDict):
@@ -46,10 +47,10 @@ class Solution(object):
         def dfs(s,value):
             if self.check(s,wordDict):
                 if len(s) == 0:
-                    ans.append(value[1:])
+                    ans.append(value[1:]) #triky
                 for i in range(len(s)):
                     if s[:i+1] in wordDict:
-                        dfs(s[i+1:],value+' '+s[:i+1])
+                        dfs(s[i+1:],value+' '+s[:i+1]) # triky
         ans = []
         dfs(s,'')
         return ans

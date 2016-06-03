@@ -20,6 +20,7 @@ class Solution:
 """
 # Solution: if ([{ push to the stack and )]} pop
 解法很巧妙， 入占和比较的都是')'.
+最优解法
 """
 
 class Solution:
@@ -31,7 +32,7 @@ class Solution:
         for e in s:
             if e in d:
                 stack.append(d[e])
-            elif not stack or stack.pop()!= e:
+            elif not stack or stack.pop()!= e:# not stack放前面因为stack是空的不能做pop()操作
                 return False
         return not stack
 

@@ -43,7 +43,9 @@ class Solution:
 
 
 
-
+"""
+The second time
+"""
 
 class Solution:
     # @param {character[][]} board
@@ -77,5 +79,54 @@ class Solution:
         return True  
     def solveSudoku(self, board):  
         self.dfs(board) 
+
+
+
+"""
+accepted solution 
+"""
+class Solution(object):
+    def solveSudoku(self, board):
+        """
+        :type board: List[List[str]]
+        :rtype: void Do not return anything, modify board in-place instead.
+        """
+       
+        self.dfs(board)
+        
+    def dfs(self,board):
+        for i in range(9):
+            for j in range(9):
+                if board[i][j] == '.':
+                    for e in '123456789':
+                        board[i][j] = e
+                        if self.check(i,j,board) and self.dfs(board):
+                            return True
+                        else:
+                            board[i][j] = '.'
+                    return False
+        return True
+                            
+                
+    
+    def check(self,i,j,board):
+        e = board[i][j]
+        board[i][j] = '.'
+        for row in range(9):
+            if board[row][j] == e:
+                return False
+        for col in range(9):
+            if board[i][col] == e:
+                return False
+        for row in range(3):
+            for col in range(3):
+                if board[(i / 3) * 3 + row][(j / 3) * 3 + col] == e:
+                    return False
+        board[i][j] = e
+        return True
+
+
+
+
 
 
