@@ -110,6 +110,7 @@ class Solution:
 
 """
 九章solution， 听懂了九章的思路很容易写代码
+iterative
 """
 class Solution(object):
     def reverseList(self, head):
@@ -127,7 +128,22 @@ class Solution(object):
 
 
 
-
+"""
+Recursive
+"""
+class Solution(object):
+    def reverseList(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        def helper(node,prev=None):
+            if not node: return prev
+            n = node.next
+            node.next = prev
+            return helper(n,node)
+            
+        return helper(head)
 
 
 

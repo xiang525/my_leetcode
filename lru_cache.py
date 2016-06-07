@@ -1,85 +1,55 @@
-# define a doubly-linked list node
-# http://www.cnblogs.com/zuoyuan/p/3701572.html
+"""
+论坛里 Double LinkedList的解法
+"""
 class Node:
-	def __init__(self,key,val):
-		self.key = key
-		self.val = val
-		self.prev = None
-		self.next = None
-
-class DoubleLinkedList:    #双向链表是一个表头，head指向第一个节点，tail指向最后一个节点
-	def __init__(self):
-		self.tail = None
-		self.head = None
-
-	def isEmpty():
-		return not self.tail  #如果self.tail==None，那么说明双向链表为空
-
-	def removeLast(self):  　　#删除tail指向的节点
-		self.remove(self.tail)
-
-	def remove(self,node):
-		if self.head == self.tail:
-			self.head, self.tail = None, None
-			return
-		if node == self.head:
-			node.next.prev = None
-			self.head = node.next
-			return
-		if node == self.tail:
-			node.prev.next = None
-			self.tail = node.prev
-			return
-		node.prev.next = node.next
-		node.next.prev = node.prev
-
-	def addFirst(self,node):   #在双向链表的第一个节点前面再插入一个节点　　
-		if not self.head:
-			self.head = self.tail = node
-			node.prev = node.next = None
-			return
-		node.next = self.head
-		self.head.prev = node
-		self.head = node
-		node.prev = None
+    def __init__(self, key, value):
+        self.key = key
+        self.val = value
+        self.prev = None
+        self.next = None
 
 class LRUCache:
-
-    # @param capacity, an integer
     def __init__(self, capacity):
-    	self.capacity = capacity
-    	self.size = 0
-    	self.d = dict()
-    	self.cache = DoubleLinkedList()
+        self.capacity = capacity
+        self.dic = dict()
+        self.head = Node(0, 0)
+        self.tail = Node(0, 0)
+        self.head.next = self.tail
+        self.tail.prev = self.head
 
-        
-
-    # @return an integer
     def get(self, key):
-    	if key in self.d and self.cache[key]:
-    		self.cache.remove(self.d[key])  #将key对应的指针指向的节点删除
-    		self.cache.addFirst(self.d[key])  #然后将这个节点添加到双向链表头部
-    		return self.d[key].val
-    	else:
-    		return -1
+        if key in self.dic:
+            n = self.dic[key]
+            self._remove(n)
+            self._add(n)
+            return n.val
+        return -1
 
-    # @param key, an integer
-    # @param value, an integer
-    # @return nothing
     def set(self, key, value):
-    	if key in self.d:
-    		self.cache.remove(self.d[key])
-    		self.cache.addFirst(self.d[key])
-    		self.d[key].val = value
-    	else:
-    		node = Node(key,value)
-    		self.p[key] = value
-    		self.cache.addFirst(node)
-    		self.size += 1
-    		if self.size > self.capacity:
-    			self.size -= 1
-    			del self.d[self.cache.tail.key]
-    			self.cache.removeLast()
+        if key in self.dic:
+            self._remove(self.dic[key])
+        n = Node(key, value)
+        self._add(n)
+        self.dic[key] = n
+        if len(self.dic) > self.capacity:
+            n = self.head.next
+            self._remove(n)
+            del self.dic[n.key]
+
+    def _remove(self, node):
+        p = node.prev
+        n = node.next
+        p.next = n
+        n.prev = p
+
+    def _add(self, node):
+        p = self.tail.prev
+        p.next = node
+        self.tail.prev = node
+        node.prev = p
+        node.next = self.tail
+
+
 
 """
 # solution 2 使用Python的OrderedDict有序字典

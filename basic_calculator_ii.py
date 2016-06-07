@@ -100,8 +100,7 @@ class Solution(object):
         n = len(s)
         for i in xrange(n):
             if s[i].isdigit():
-                num = num*10+ord(s[i])-ord("0")
-                print num
+                num = num*10+ord(s[i])-ord("0") #处理多位数e.g., 10，78这种数                
             if (not s[i].isdigit() and not s[i].isspace()) or i == n-1:
                 if sign == "-":
                     stack.append(-num)
@@ -116,7 +115,7 @@ class Solution(object):
                     else:
                         stack.append(tmp/num)
                 sign = s[i]
-                num = 0
+                num = 0  #每次要清零
         return sum(stack)
             
 
