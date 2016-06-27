@@ -69,10 +69,10 @@ class Solution(object):
 
 
 
-#  ********* The Second Time ********
+"""
+# 以下程序不能通过，因为输出不符合要求， 题目不是要以list 形式输出而是一个一个结果输出
 
-
-
+"""
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, x):
@@ -100,8 +100,40 @@ class Solution:
         dfs(1,n)
         return res
 
-# 不知道为何以上程序不能通过
 
+"""
+通过的解法
+"""
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def generateTrees(self, n):
+        """
+        :type n: int
+        :rtype: List[TreeNode]
+        """
+        def dfs(start,end):
+            if start > end: return [None] #返回list形式否则后面127 or 128行会出问题
+            ans = [] #每次输出以某一个值为root的所以tree后清空，为下个准备，同时这种结构的输出
+            for value in range(start,end+1):
+                left = dfs(start, value-1)
+                right = dfs(value+1, end)
+                for i in left:
+                    for j in right:
+                        root = TreeNode(value)
+                        root.left = i
+                        root.right = j
+                        ans.append(root)
+            return ans
+        
+        if n == 0: return []
+        return dfs(1,n)
+        
 
 
 

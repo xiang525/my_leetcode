@@ -17,7 +17,7 @@ class Solution:
     	q = []
     	q.append((beginWord,1)) # 记录单词的同时也记录长度
     	while q:
-    		curr = q.pop(0)
+    		curr = q.pop(0) #从前面pop出来
     		currword = curr[0]; currlen = curr[1]
     		if currword == endWord: return currlen
     		for i in range(len(beginWord)):

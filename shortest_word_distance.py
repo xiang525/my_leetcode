@@ -15,7 +15,7 @@ class Solution(object):
         for i in range(n):
             if words[i] == word1:
                 index1 = i
-                minLen = min(minLen,abs(index1 - index2))
+                minLen = min(minLen,abs(index1 - index2))#注意不要讲这一句写在循环外面因为当i都不等于时不需要update minDistance的value
             if words[i] == word2:
                 index2 = i
                 minLen = min(minLen,abs(index1 - index2))

@@ -54,6 +54,7 @@ class Solution:
 """
 九章solution, 思路非常清晰，比起hashmap没有耗费过多的空间
 O(1) space
+算法班 视频5 1:42:16
 """
 class Solution:
     # @param head, a RandomListNode
@@ -96,6 +97,7 @@ class Solution:
 """
 hashmap soluton, O(n) and O(n) space
 使用哈希表保存原链表到新链表节点的映射，即可实现对随机指针域的拷贝
+O(n) loop 2遍， 第一遍存结点的对应关系， 第二遍set random
 """
 class Solution(object):
     def copyRandomList(self, head):

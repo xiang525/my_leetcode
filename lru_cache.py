@@ -198,10 +198,138 @@ class LRUCache:
 
 
 
+"""
+doublelist 实现的另一种写法
+"""
+class Node:
+    def __init__(self,key,value):
+        self.key = key
+        self.value = value
+        self.prev = None
+        self.next = None
+
+class LRUCache(object):
+
+    def __init__(self, capacity):
+        """
+        :type capacity: int
+        """
+        self.capacity = capacity
+        self.dic = dict()
+        self.head = Node(0,0)
+        self.tail = Node(0,0)
+        self.head.next = self.tail
+        self.tail.prev = self.head
+        
+
+    def get(self, key):
+        """
+        :rtype: int
+        """
+        if key in self.dic:
+            n = self.dic[key]
+            self.remove(n)
+            self.add(n)
+            return n.value
+        else:
+            return -1
+        
+
+    def set(self, key, value):
+        """
+        :type key: int
+        :type value: int
+        :rtype: nothing
+        """
+        if key in self.dic:
+            self.remove(self.dic[key])
+        n = Node(key, value)
+        self.add(n)
+        self.dic[key] = n
+        if len(self.dic) > self.capacity:
+            n = self.head.next
+            self.remove(n)
+            del self.dic[n.key]
+            
+        
+    def remove(self, node):
+        p = node.prev
+        p.next = node.next
+        node.next.prev = p
+        
+    def add(self, node):
+        p = self.tail.prev
+        p.next = node
+        self.tail.prev = node
+        node.prev = p
+        node.next = self.tail
 
 
+"""
+更好的写法
+"""
+class Node:
+    def __init__(self,key,value):
+        self.key = key
+        self.value = value
+        self.prev = None
+        self.next = None
+        
 
+class LRUCache(object):
 
+    def __init__(self, capacity):
+        """
+        :type capacity: int
+        """
+        self.capacity = capacity
+        self.dic = dict()
+        self.head = Node(0,0)
+        self.tail = Node(0,0)
+        self.head.next = self.tail
+        self.tail.prev = self.head
+        
+    def add_from_end(self,node):
+        tmp = self.tail.prev
+        tmp.next = node
+        node.prev = tmp
+        node.next = self.tail
+        self.tail.prev = node
+    
+    def remove(self, node):
+        p = node.prev
+        p.next = node.next
+        node.next.prev = p
+        
+
+    def get(self, key):
+        """
+        :rtype: int
+        """
+        if key in self.dic:
+            node = self.dic[key]
+            self.remove(node)
+            self.add_from_end(node)
+            return node.value
+        else:
+            return -1
+        
+
+    def set(self, key, value):
+        """
+        :type key: int
+        :type value: int
+        :rtype: nothing
+        """
+        if key in self.dic:
+            self.remove(self.dic[key])
+        node = Node(key, value)
+        self.add_from_end(node)
+        self.dic[key] = node
+        if len(self.dic) > self.capacity:
+            p = self.head.next
+            self.remove(p)
+            del self.dic[p.key]
 
 
 

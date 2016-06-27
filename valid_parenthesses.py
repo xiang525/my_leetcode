@@ -36,6 +36,24 @@ class Solution:
                 return False
         return not stack
 
+"""
+另一种写法
+"""
+class Solution(object):
+    def isValid(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        d = {'(':')','{':'}','[':']'}
+        stack = []
+        for e in s:
+            if e in d:
+                stack.append(d[e])
+            elif not stack or stack.pop()!=e:
+                return False
+        return stack == []
+
 # ***************** The Third Time *********************
 """
 My own soluiton:常规解法，成对就pop，代码繁琐

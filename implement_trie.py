@@ -21,7 +21,7 @@ class Trie:
                 child = TrieNode()
                 node.childs[letter] = child
             node = child
-            node.isWord = True
+        node.isWord = True
         
 
     # @param {string} word

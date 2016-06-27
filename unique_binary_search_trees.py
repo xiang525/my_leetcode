@@ -35,7 +35,7 @@ class Solution(object):
         """        
         dp = [1,1,2]
         if n <=2:return dp[n]
-        dp += [0]*(n-2)
+        dp += [0]*(n-2) #赋值为0 不是1， 因为后面是叠加 没有的话应该为0 才能不叠加没有的
         for i in range(3,n+1):
             for j in range(i):
                 dp[i] += dp[j] * dp[i-j-1] #到i时的dp分为两部分， 一部分是i之前的j， 另一部分是从j到i的；两部分相乘

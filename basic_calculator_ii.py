@@ -110,12 +110,48 @@ class Solution(object):
                     stack.append(stack.pop()*num)
                 else:
                     tmp = stack.pop()
-                    if tmp/num < 0 and tmp%num != 0:
+                    if tmp/num < 0 and tmp%num != 0: #处理-3/2 case, python里-3/2=2
                         stack.append(tmp/num+1)
                     else:
                         stack.append(tmp/num)
                 sign = s[i]
                 num = 0  #每次要清零
+        return sum(stack)
+
+
+"""
+以下解法是有问题的
+"""
+class Solution(object):
+    def calculate(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        if not s: return "0"
+        stack, num, sign = [], 0, "+"
+        n = len(s)
+        for c in s:
+            if c.isdigit():
+                num = num*10+int(c)     
+                print num, s.index(c), n
+            if (not c.isdigit() and not c.isspace()) or s.index(c) == n-1:#c==0的index永远是1,因为多个一样的只会返回第一次出现的index
+                print stack 
+                if sign == "-":
+                    stack.append(-num)
+                elif sign == "+":
+                    stack.append(num)
+                elif sign == "*":
+                    stack.append(stack.pop()*num)
+                else:
+                    tmp = stack.pop()
+                    if tmp/num < 0 and tmp%num != 0:
+                        stack.append(tmp/num+1)
+                    else:
+                        stack.append(tmp/num)
+                sign = c
+                num = 0 
+
         return sum(stack)
             
 

@@ -126,7 +126,33 @@ def canFinish(self, numCourses, prerequisites):
 
 
 
-
+"""
+我的模板
+"""
+class Solution(object):
+    def canFinish(self, numCourses, prerequisites):
+        """
+        :type numCourses: int
+        :type prerequisites: List[List[int]]
+        :rtype: bool
+        """
+        n = numCourses; a = prerequisites
+        graph = collections.defaultdict(list)
+        degree = {i:0 for i in range(n)}
+        for e in a:
+            degree[e[1]] += 1
+            graph[e[0]].append(e[1])
+            
+        queue = filter(lambda x: degree[x]==0,degree.keys())
+        count = 0
+        while queue:
+            pop = queue.pop()
+            count += 1
+            for ele in graph[pop]:
+                degree[ele] -= 1
+                if degree[ele] == 0:
+                    queue.append(ele)
+        return count == n
 
 
 

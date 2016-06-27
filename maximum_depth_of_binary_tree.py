@@ -33,3 +33,30 @@ class Solution(object):
         left = self.maxDepth(root.left) 
         right = self.maxDepth(root.right) 
         return max(left,right) + 1
+
+
+"""
+非递归解法， 和level order 题一样的思想
+"""
+class Solution(object):
+    def maxDepth(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        if not root: return 0
+        queue = [root]
+        level = 0
+        while queue:
+            size = len(queue)
+            for i in range(size):
+                pop = queue.pop(0)
+                if pop.left:
+                    queue.append(pop.left)
+                if pop.right:
+                    queue.append(pop.right)
+            level += 1
+        return level
+
+
+

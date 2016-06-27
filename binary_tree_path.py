@@ -53,6 +53,26 @@ class Solution:
         dfs(root,'')
         return ans
 
+"""
+模板写法
+"""
+class Solution:
+    # @param {TreeNode} root
+    # @return {string[]}
+    def binaryTreePaths(self, root):
+        def dfs(value,root):
+            if not root.left and not root.right:
+                ans.append(value)
+            if root.left:
+                dfs(value+'->'+str(root.left.val),root.left)
+            if root.right:
+                dfs(value+'->'+str(root.right.val), root.right)
+        ans = []
+        if not root: return []
+        dfs(str(root.val)+'',root)
+        return ans
+
+
 
 
         

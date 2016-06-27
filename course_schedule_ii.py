@@ -66,7 +66,34 @@ class Solution(object):
                     
         return [[],ans][k==n]
 
-
+"""
+模板解法
+"""
+class Solution(object):
+    def findOrder(self, numCourses, prerequisites):
+        """
+        :type numCourses: int
+        :type prerequisites: List[List[int]]
+        :rtype: List[int]
+        """
+        ans = []; n = numCourses; a = prerequisites
+        graph = collections.defaultdict(list)
+        degree = {i:0 for i in range(n)}
+        for e in a:
+            graph[e[1]].append(e[0])
+            degree[e[0]] += 1
+        
+        queue = filter(lambda x:degree[x]==0, degree.keys())
+        count = 0
+        while queue:
+            pop = queue.pop()
+            count += 1
+            ans.append(pop)
+            for ele in graph[pop]:
+                degree[ele] -= 1
+                if degree[ele] == 0:
+                    queue.append(ele)
+        return [[],ans][count==n]
 
 
         

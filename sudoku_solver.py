@@ -105,7 +105,7 @@ class Solution(object):
                         else:
                             board[i][j] = '.'
                     return False
-        return True
+        return True # remember
                             
                 
     

@@ -21,6 +21,32 @@ class Solution(object):
 
 
 """
+另一种写法
+"""
+class Solution(object):
+    def numIslands(self, grid):
+        """
+        :type grid: List[List[str]]
+        :rtype: int
+        """
+                    
+        def set_zero(i,j):
+            if 0 <= i < m and 0 <= j < len(grid[i]) and grid[i][j] == '1':
+                grid[i][j] = 0
+                map(set_zero,(i,i,i+1,i-1),(j+1,j-1,j,j))
+                return 1
+            return 0
+        
+        count = 0
+        if not grid: return 0
+        m = len(grid); n = len(grid[0])
+        for i in range(m):
+            for j in range(n):
+                count += set_zero(i,j)
+        return count
+
+
+"""
 union-find的解法
 """
 class Solution(object):
@@ -101,4 +127,47 @@ class Solution(object):
                 if i < row-1 and grid[i+1][j] == '1':
                     union(curNode,curNode+col)
         return self.count
+
+
+"""
+另一种写法
+"""
+class Solution(object):
+    def numIslands(self, grid):
+        """
+        :type grid: List[List[str]]
+        :rtype: int
+        """
+        def find(x):
+            if parent[x] != x:
+                return find(parent[x])
+            return parent[x]
+        
+        def union(x,y):
+            xroot, yroot = find(x), find(y)
+            if xroot == yroot:
+                return 0
+            parent[xroot] = yroot
+            return 1
+        
+        if not grid: return 0
+        m = len(grid); n = len(grid[0])
+        parent = range(m*n)
+        total = 0
+        for i in range(m):
+            for j in range(n):
+                if grid[i][j] == '1':
+                    total += 1
+        
+             
+        for i in range(m):
+            for j in range(n):
+                if grid[i][j] == '0': continue    
+                cur = i*n + j
+                if j < n-1 and grid[i][j+1] == '1': #坐标从2d转向了1D
+                    total -= union(cur,cur+1)
+                if i < m-1 and grid[i+1][j] == '1':
+                    total -= union(cur,cur+n)
+                
+        return total
 

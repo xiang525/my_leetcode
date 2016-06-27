@@ -30,6 +30,7 @@ class Solution:
 """
 九章solution的实现：two pointers是solution， 实现时从指针值小的那边灌水
 强化班视频讲解很好 3-2
+O(n)
 """
 class Solution(object):
     def trap(self, bars):

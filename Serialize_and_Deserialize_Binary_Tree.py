@@ -184,7 +184,50 @@ class Codec:
         root.right, pos = self.buildTree(newData, pos+1)
         return root, pos
 
+"""
+论坛里的写法
+"""
 
+class Codec:
+
+    def serialize(self, root):
+        """Encodes a tree to a single string.
+        
+        :type root: TreeNode
+        :rtype: str
+        """
+        def preorder(root):
+            if root:
+                ans.append(str(root.val))
+                preorder(root.left)
+                preorder(root.right)
+            else:
+                ans.append('#')
+        ans = []
+        preorder(root)
+        return ' '.join(ans)
+        
+
+    def deserialize(self, data):
+        """Decodes your encoded data to tree.
+        
+        :type data: str
+        :rtype: TreeNode
+        """
+        newData = data.split(' ')
+        root, pos = self.buildTree(newData,-1)# position=-1跟后面的写法配合起来
+        return root
+    
+    def buildTree(self,data,pos):
+        pos += 1
+        if pos >= len(data) or data[pos] == '#':
+            return None, pos
+        
+        root = TreeNode(int(data[pos]))
+        root.left, pos = self.buildTree(data,pos)
+        root.right, pos = self.buildTree(data, pos)
+        return root, pos
+        
 
 
 

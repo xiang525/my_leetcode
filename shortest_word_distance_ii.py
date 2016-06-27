@@ -56,3 +56,9 @@ class WordDistance(object):
             else:
                 i += 1
         return minLen
+
+
+
+
+
+        

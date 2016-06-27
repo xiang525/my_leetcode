@@ -17,4 +17,4 @@ class Solution(object):
             return 1
 
         parent = range(n)
-        return n - sum(union(x, y) for x, y in edges)
+        return n - sum(union(x, y) for x, y in edges) #点的个数 - 边数就是连通分量的个数

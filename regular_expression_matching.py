@@ -25,7 +25,7 @@ class Solution:
 
 
 """
-DP
+DP: * 是匹配前面的字符！！
 """
 class Solution:
     # @return a boolean
@@ -34,7 +34,7 @@ class Solution:
         dp[0][0]=True
         for i in range(1,len(p)+1):
             if p[i-1]=='*':
-                if i>=2:
+                if i>=2: # 我们可以选择匹配s中的空字串，或匹配无限个。
                     dp[0][i]=dp[0][i-2]
 
         for i in range(1,len(s)+1):

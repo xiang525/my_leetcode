@@ -27,6 +27,37 @@ class Solution:
     			fac /= i  # e.g., (n-1)!/(n-1) = (n-2)!
     	return res
 
+
+"""
+自己跑test case会很清楚
+"""
+class Solution(object):
+    def getPermutation(self, n, k):
+        """
+        :type n: int
+        :type k: int
+        :rtype: str
+        """      
+        fac = 1
+        k -= 1
+        res = ''
+        for i in range(1,n-1):
+            fac *= i  # fac = 1        
+        nums = range(1,n+1)  # nums = [1,2]
+        for i in reversed(range(n)):            
+            cur = nums[k/fac] # cur = nums[0] = 1   
+            res += str(cur)  # res = '1'
+            nums.remove(cur)  # nums = [2]
+            if i:
+                k %= fac # k = 1
+                fac /= i  # fac = 1
+        return res
+
+
+if __name__ == '__main__':
+    a = Solution()
+    print a.getPermutation(2,1)
+
     	
 
 

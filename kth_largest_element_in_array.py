@@ -60,6 +60,24 @@ class Solution(object):
         else:
             return pivot
 
+"""
+use heap O(nlogn)
+不是最优解法
+"""
+class Solution(object):
+    def findKthLargest(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        heap = [];res = None
+        for e in nums:
+            heapq.heappush(heap,-e)
+        for i in range(k):
+            res = -1*heapq.heappop(heap)
+        return res
+
 
 if __name__ == '__main__':
 	a = Solution()

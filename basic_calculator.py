@@ -46,7 +46,7 @@ class Solution:
             if s[i].isdigit():
                 tmp += s[i]
                 if i == 0 or not s[i-1].isdigit():
-                    number.append(int(tmp[::-1])) 数字在number中是正向的
+                    number.append(int(tmp[::-1])) #数字在number中是正向的
                     tmp = ""
             elif s[i] ==')' or s[i] == '+' or s[i]=='-':
                 oper.append(s[i])
@@ -54,6 +54,7 @@ class Solution:
                 while oper[-1]!=')':
                     self.compute(number,oper)
                 oper.pop()
+                
         while oper:
             self.compute(number,oper)
         return number[0]
@@ -82,7 +83,7 @@ class Solution:
         for i in range(n):
             if s[i].isdigit():
                 tmp+=s[i]
-                if i==n-1 or not s[i+1].isdigit():
+                if i==n-1 or not s[i+1].isdigit():#判读数字组合结束的条件
                     num.append(int(tmp))
                     tmp=""
             elif s[i] in "(+-":
@@ -121,7 +122,44 @@ class Solution:
                 op.append(bsign)
 
 
+"""
+实现一个简单的计算器，对输入的字符串表达式进行计算。字符串表达式可能包含：
 
+非负整数
+加号或者减号'+' 和 '-'
+括号'(' 和 ')'
+空白字符' '
+并且输入的字符串保证是合法的表达式。
+
+如果当前字符c是数字字符，数字可能不止一位，所以需要继续遍历下一个字符，若仍然是数字字符，将其与前面的连续数字字符组成一个数num，直到遇到下一个非数字字符；
+如果当前的字符c是'+'，那么就将前面的num加到result中，并且设置符号标记sign=1为正；
+如果当前字符c是'-'，那么就用result - num，并且设置符号标记sign=-1为负；
+如果当前字符c是'('，那么先保存当前的result和符号sign到栈中，再继续计算括号里面的表达式；
+如果当前字符c是')'，那么计算完毕当前括号的result后，依次弹出栈顶的sign和result，然后将括号中的result和栈顶弹出的result相加（或相减，由sign决定）；
+继续以上步骤，直到遍历到字符串的最后一个字符
+
+"""
+class Solution(object):
+    def calculate(self, s):
+        res, num, sign, stack = 0, 0, 1, []
+        for c in s:
+            if c.isdigit():
+                num = 10*num + int(c)
+            elif c in ["-", "+"]:
+                res += sign*num
+                num = 0
+                sign = [-1, 1][c=="+"]
+            elif c == "(":
+                stack.append(res)
+                stack.append(sign)
+                sign, res = 1, 0
+            elif c == ")":
+                res += sign*num
+                res *= stack.pop()
+                res += stack.pop()
+                num = 0
+        return res + num*sign
+        
 
 
 
@@ -130,6 +168,21 @@ class Solution:
 if __name__ == '__main__':
     a = Solution()
     print a.calculate("1+1")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     			

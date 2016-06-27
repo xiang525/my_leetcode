@@ -1,8 +1,11 @@
+"""
 # 难点在于如何处理"*"
 # 遇到'*'时, 用star变量记录'*'在p中出现的位置, 用ss变量记录此时s字符串指针sPointer的位置, 
 # 但不移动sPointer, 因为'*'可以匹配0个字符, ss表示这个'*'所能匹配到的位置。遇到不匹配的情况时, 
 # 即走到if star!= -1时, pPointer被拉回到star的下一个位置, sPointer被拉回到ss的下一个位置, 
 # 继续匹配。把s字符串走完, p中还可以剩下一堆'*', 如果p中还有其他字符就返回False了。
+此题用DP会超时
+"""
 class Solution:
     # @param {string} s
     # @param {string} p

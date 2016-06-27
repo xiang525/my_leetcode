@@ -94,7 +94,7 @@ class Solution(object):
         """
         stack = []; n = len(tokens)
         for i in tokens:
-            if i not in ('+','-','*','/'):
+            if i not in ('+','-','*','/'):# 不能用i.isdigit()， -4这种情况不是数字但是合法
                 stack.append(int(i))
             else:
                 b = stack.pop()  #注意顺序是反的

@@ -110,7 +110,28 @@ class Solution(object):
         dfs(0,target,[])
         return ans
 
-
+"""
+另一种写法
+"""
+class Solution(object):
+    def combinationSum(self, candidates, target):
+        """
+        :type candidates: List[int]
+        :type target: int
+        :rtype: List[List[int]]
+        """
+        def dfs(start,value):
+            if sum(value) == target:
+                ans.append(value)
+                return
+            for i in range(start,len(candidates)):
+                if sum(value) + candidates[i] > target: return
+                dfs(i,value+[candidates[i]])
+                
+        ans = []
+        candidates.sort()
+        dfs(0,[])
+        return ans
 
 
 

@@ -19,21 +19,6 @@ class Solution:
     	return res
 
 
-# ******** The Second Time *********
-# 以下方法， TLE
-class Solution:
-    # @param {integer[]} nums
-    # @return {integer[][]}
-    def permuteUnique(self, nums):
-        def dfs(depth,value):
-            if depth == len(nums):
-                if value not in ans:
-                    ans.append(value)
-            for i in range(len(nums)):
-                dfs(depth+1,value+[nums[i]])
-        ans = []
-        dfs(0,[])
-        return ans
 
 """
 # 解题思路：这道题也是穷举全排列，只是集合中可能有重复的元素。分两步：1，对集合进行排序。2，进行剪枝，
@@ -91,6 +76,30 @@ class Solution(object):
             
 
 
+"""
+模板解法， 赞一个，一直困惑的超时问题解决了
+"""
+class Solution(object):
+    def permuteUnique(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        def dfs(nums,value):
+            if len(value) == size:
+                ans.append(value)
+                return
+            for i in range(len(nums)):
+                if i and nums[i] == nums[i-1]: #关键在这里
+                    continue
+                dfs(nums[:i]+nums[i+1:],value+[nums[i]])
+                
+        ans = []
+        if not nums: return ans
+        size = len(nums)
+        nums.sort()
+        dfs(nums,[])
+        return ans
 
 
 
