@@ -133,7 +133,40 @@ class Solution(object):
             res[1] = left # 此时left和right相邻， 如果right不等于target，必然是left
         return res           
             
-            
+ 
+ """
+ 另一种写法
+ """
+ class Solution(object):
+    def searchRange(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        begin, end = -1, -1
+        n = len(nums)
+        left = 0; right = n-1
+        while left <= right:
+            m = (left+right)/2
+            if nums[m] > target:
+                right = m-1
+            elif nums[m] < target:
+                left = m+1
+            else:
+                if nums[left] == target: begin = left
+                if nums[right] == target: end = right
+                for i in range(m, right+1):
+                    if nums[i] != target:
+                        end = i-1
+                        break
+                for i in range(m, left-1, -1):
+                    if nums[i] != target:
+                        begin = i + 1
+                        break
+                return [begin, end]
+                
+        return [-1,-1]           
                 
                     
                     

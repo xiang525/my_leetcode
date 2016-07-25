@@ -1,39 +1,26 @@
-
-import heapq
-class Solution:
-    # @param {int[][]} arrays k sorted integer arrays
-    # @return {int[]} a sorted array
-    def firstN(self, strs, n):
-        heap = []
-        tmp = strs.split(); d = collections.defaultdict(list)
-        ans = []; freq = {}
-
-        
-        for e in tmp:
-            if e not in freq:
-                freq[e] = 1
-            else:
-                freq[e] += 1
-
-        for index, value in enumerate(freq):
-            d[].append()
-
-
-
-        for key in freq:            
-            heapq.heappush(heap,-freq[key])             
+class Solution(object):
+    def longestPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        def helper(s,l, r):
+            while l>=0 and r < len(s) and s[l] == s[r]:
+                l -= 1; r += 1
+            return l+1, r
             
+        res = ''
+        for i in range(len(s)):
+            
+            start, end = helper(s,i,i)
+            print start, end
+            if end-start > len(res):
+                res = s[start: end-1]
+            start, end = helper(s, i, i+1)
+            if end-start > len(res):
+                res = s[start, end]
+        return res
 
-        for i in range(n):
-            pop = -1*heapq.heappop(heap)
-
-
-        return ans
-
-
-
-
-        
 
 
 
@@ -42,7 +29,6 @@ class Solution:
 
 if __name__ == '__main__':
     ins = Solution()
-    a = "a a b b c c beta beta beta alpha"
-    print ins.firstN(a,2)
+    ins.longestPalindrome("a")
     
     

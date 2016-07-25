@@ -1,5 +1,7 @@
+"""
 # 这道题应该是双指针s1,s2，从头扫描，每一步先移动s2，使s1-s2范围内包含答案，随后移动s1，
 # 使包含结果的字符串最短.
+"""
 class Solution:
     # @param {string} s
     # @param {string} t

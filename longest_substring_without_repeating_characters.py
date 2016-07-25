@@ -87,6 +87,7 @@ class Solution(object):
 
 """
 my own way
+O(n)
 """
 class Solution(object):
     def lengthOfLongestSubstring(self, s):

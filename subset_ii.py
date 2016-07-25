@@ -57,6 +57,28 @@ class Solution(object):
 
 
 
+"""
+另一种写法
+"""
+class Solution(object):
+    def subsetsWithDup(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        def dfs(start, value):
+            if value not in ans:
+                ans.append(value)
+            if start == len(nums):
+                return
+            for i in range(start,len(nums)):
+                dfs(i+1, value+[nums[i]])
+                
+        if not nums: return []
+        ans = []
+        nums.sort()
+        dfs(0,[])
+        return ans
 
 
 

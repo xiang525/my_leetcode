@@ -35,6 +35,31 @@ class Solution(object):
         return dp[amount] if dp[amount] <= amount else -1
 
 
+"""
+DFS 解法
+"""
+class Solution(object):
+    def coinChange(self, coins, amount):
+        """
+        :type coins: List[int]
+        :type amount: int
+        :rtype: int
+        """
+        self.minValue = sys.maxint
+        coins.sort(reverse=True)
+        
+        def dfs(start, remain, count):
+            if remain == 0:
+                self.minValue = min(self.minValue, count)
+            for i in range(start, len(coins)):
+                if coins[i] <= remain < coins[i] * (self.minValue - count):# optimization for time
+                    dfs(i, remain-coins[i], count+1)
+                    
+        for i in range(len(coins)):
+            dfs(0,amount,0)
+        return self.minValue if self.minValue < sys.maxint else -1
+
+
 
 
         

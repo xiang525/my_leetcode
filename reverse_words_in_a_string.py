@@ -48,3 +48,27 @@ class Solution(object):
             begin += 1
             end -= 1
         return s
+
+"""
+类似的问题： input -> output
+his is a great company -> siht si a taerg ynapmoc
+in-place implementation
+"""
+class Solution:
+    # @param s, a string
+    # @return a string
+    def reverseWords(self, s):  
+        s = s.split()        
+        for i in xrange(len(s)):
+            s[i] = s[i][::-1]            
+        return ' '.join(s)
+
+
+
+        
+
+
+if __name__ == "__main__":
+    a = Solution()
+    strs = 'this is a great company'
+    print a.reverseWords(strs)

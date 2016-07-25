@@ -26,12 +26,21 @@ class Solution:
 
 """
 DP: * 是匹配前面的字符！！
+# The DP table and the string s and p use the same indexes i and j, but
+# table[i][j] means the match status between p[:i] and s[:j], i.e.
+# table[0][0] means the match status of two empty strings, and
+# table[1][1] means the match status of p[0] and s[0]. Therefore, when
+# refering to the i-th and the j-th characters of p and s for updating
+# table[i][j], we use p[i - 1] and s[j - 1].
 """
 class Solution:
     # @return a boolean
     def isMatch(self, s, p):
         dp=[[False for i in range(len(p)+1)] for j in range(len(s)+1)]
         dp[0][0]=True
+        # Update the corner case of when s is an empty string but p is not.
+        # Since each '*' can eliminate the charter before it, the table is
+        # vertically updated by the one before previous. [test_symbol_0]
         for i in range(1,len(p)+1):
             if p[i-1]=='*':
                 if i>=2: # 我们可以选择匹配s中的空字串，或匹配无限个。

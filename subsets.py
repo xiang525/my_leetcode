@@ -98,8 +98,26 @@ class Solution(object):
         return ans
 
 
-
-
+"""
+另一种写法
+"""
+class Solution(object):
+    def subsets(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        def dfs(start,value):
+            ans.append(value)
+            if start == len(nums):
+                return
+            for i in range(start,len(nums)):
+                dfs(i+1,value+[nums[i]])
+                
+        ans = []
+        if not nums: return ans
+        dfs(0,[])
+        return ans
 
 
 

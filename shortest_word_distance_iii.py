@@ -10,14 +10,14 @@ class Solution(object):
         :rtype: int
         """
         if not words or len(words) < 2: return -1
-        p1 = -1; p2 = -1; minLen = sys.maxint
+        p1 = -1; p2 = -1; minLen = sys.maxint # 也可以这样赋值 p1, p2 = n, n
         
         for i in range(len(words)):
             if words[i] == word1 and word1 != word2:
                 p1 = i
             if words[i] == word2
                 if word1 == word2:
-                    p1 = p2 # p1总是等于上一个p2的值
+                    p1 = p2 # p1总是等于上一个p2的值, 这样可以保证|p1-p2|最小
                 p2 = i
             if p1 != -1 and p2 != -1:
                 minLen = min(minLen, abs(p2 - p1))

@@ -56,7 +56,7 @@ class Solution(object):
        
         d = dict(); ans = []
         for e in strs:
-            ee = ''.join(sorted(e))
+            ee = ''.join(sorted(e))#sorted(e) output is an array
             if ee not in d:
                 d[ee] = [e]
             else:

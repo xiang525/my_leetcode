@@ -1,6 +1,9 @@
 """
 论坛里的解法，不用字典会超时
 value - num != num 专门处理value = 0, num = 0 (only one '0')这种情况
+corner case:
+1. only one element, e.g., 0
+2. two elements are the same, e.g., 0, 0, value = 0
 """
 class TwoSum(object):
 

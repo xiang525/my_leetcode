@@ -76,7 +76,22 @@ class Solution(object):
 
 
 
+"""
+concise code style
+"""
 
+class Solution(object):
+    def sortedArrayToBST(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: TreeNode
+        """
+        n = len(nums)
+        if not nums: return 
+        root = TreeNode(nums[n/2])
+        root.left = self.sortedArrayToBST(nums[:n/2])
+        root.right = self.sortedArrayToBST(nums[n/2+1:])
+        return root
 
 
 

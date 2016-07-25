@@ -45,6 +45,8 @@ class Solution:  # O(n^2) Time limit exceeded
 首先我们把所有的数标记为素数（true），就是我们从2开始，找出所有2的倍数，把它标记为不是素数（false）
 (当然不是素数),再找到3，找出所有3的倍数，也标记为不是素数（false），再找到下一个标记为（true）的数k，
 再去找到所有k的倍数，标记为（false），依次类推...那么剩下来的数就都是素数了.
+Use xrange instead of range to fix the MLE. range creates one extra list of integers, 
+while xrange is called a generator and does not take much extra memory usage.
 """
 class Solution:  # 筛选法
     # @param {integer} n
@@ -55,7 +57,7 @@ class Solution:  # 筛选法
         for i in range(2,n):
             if isPrime[i] == True:
                 count += 1
-                for j in xrange(i+i,n,i):
+                for j in xrange(i+i,n,i): # use range cannot pass
                     isPrime[j] = False
         return count
 

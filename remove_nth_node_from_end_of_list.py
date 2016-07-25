@@ -40,7 +40,7 @@ class Solution:
         if not head:
             return head
         dummy = ListNode(0)
-        dummy.next = head
+        dummy.next = head #用dummy很好，因为后面正好停在要去掉的node的前一个
         first = second = dummy
         for i in range(n):
             first = first.next

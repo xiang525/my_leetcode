@@ -29,6 +29,7 @@ class Solution:
 O(n*n)。对于每一个字符，以之作为中间元素往左右寻找。注意处理奇偶两种模式：
 1. aba
 2. abba
+space is O(n)不是最优解
 """
 def longestPalindrome(self, s):
     res = ""
@@ -49,3 +50,34 @@ def helper(self, s, l, r):
     while l >= 0 and r < len(s) and s[l] == s[r]:
         l -= 1; r += 1
     return s[l+1:r]
+
+
+"""
+最优解 run time O(n^2)
+space O(1)
+"""
+class Solution(object):
+    def longestPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        def helper(s,l, r):
+            while l>=0 and r < len(s) and s[l] == s[r]:
+                l -= 1; r += 1
+            return l+1, r
+            
+        res = ''
+        for i in range(len(s)):
+            start, end = helper(s,i,i)
+            if end-start > len(res):
+                res = s[start: end]
+            start, end = helper(s, i, i+1)
+            if end-start > len(res):
+                res = s[start: end]
+        return res
+
+
+
+
+    

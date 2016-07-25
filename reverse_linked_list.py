@@ -146,6 +146,23 @@ class Solution(object):
         return helper(head)
 
 
+"""
+recursive 的写法
+"""
+
+class Solution(object):
+    def reverseList(self, head,prev=None):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        
+        if not head: return prev
+        next = head.next
+        head.next = prev
+        return self.reverseList(next, head)
+
+
 
 
 

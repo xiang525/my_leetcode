@@ -71,7 +71,7 @@ class Solution:
             else:
                 break
         if ans in ([],['+'],['-']):return 0  # 开始忘记了这个corner case
-        if -(1<<31) < int(''.join(ans)) < (1<<31)-1:
+        if -(1<<31) < int(''.join(ans)) < (1<<31)-1:#用sys.maxint不能通过
             return int(''.join(ans))
         elif int(''.join(ans)) >=(1<<31)-1 :
             return (1<<31)-1

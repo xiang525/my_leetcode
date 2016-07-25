@@ -90,7 +90,7 @@ class NumArray(object):
         def buildTree(nums,left,right):
             if left > right: return None
             if left == right:
-                n = Node(left,right)
+                n = Node(left,right) # leaves
                 n.sums = nums[left]
                 return n
             mid = (left+right)/2
@@ -120,4 +120,24 @@ class NumArray(object):
             root.sums = root.left.sums + root.right.sums
             return root.sums
         return helper(self.root,i,val)
+
+
+    def sumRange(self, i, j):
+        """
+        sum of elements nums[i..j], inclusive.
+        :type i: int
+        :type j: int
+        :rtype: int
+        """
+        def helper(root,i,j):
+            if root.start == i and root.end == j: return root.sums
+            mid = (root.start + root.end)/2
+            if j <= mid:
+                return helper(root.left,i,j)
+            elif i >= mid+1:
+                return helper(root.right,i,j)
+            else:
+                return helper(root.left,i,mid) + helper(root.right,mid+1,j)
+        return helper(self.root,i,j)
+        
 

@@ -93,7 +93,7 @@ def helper(self, root, Min, Max):
 
 
 """
-A good solution
+A good solution: recrusion
 """
 import sys
 class Solution(object):

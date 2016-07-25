@@ -88,6 +88,23 @@ class Solution:
 
 
 
+"""
+另一种写法
+"""
+class Solution(object):
+    def isValid(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        stack = []
+        d = {'(':')', '{':'}','[':']'}
+        for e in s:
+            if e in d:
+                stack.append(d[e])
+            elif not stack or stack.pop()!=e:
+                return False
+        return stack == []
 
 
 

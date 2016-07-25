@@ -55,7 +55,7 @@ class Solution(object):
                 small.append(num)
         if k <= len(large):
             return self.findKthLargest(large, k)
-        elif k > len(nums) - len(small):
+        elif k > len(nums) - len(small): # include large + pivot
             return self.findKthLargest(small, k - (len(nums) - len(small))) 
         else:
             return pivot
